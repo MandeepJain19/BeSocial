@@ -1,12 +1,10 @@
 const mongoose = require('mongoose')
 
-mongoose.connect("mongodb://localhost/BeSocial", { useNewUrlParser: true, useUnifiedTopology: true,'useCreateIndex': true });
 
 let chatSchema = mongoose.Schema({
-    chatId : {type : String, exists: true },
-    senderID : {type : String, exists: true},
-    receiverID : {type : String, exists: true},
-    chatDesc : String,
+    sender_id : {type : String, exists: true},
+    receiver_id : {type : String, exists: true},
+    message : String,
     dateTime : {type: Date,default: Date.now},
     status : String,
 })

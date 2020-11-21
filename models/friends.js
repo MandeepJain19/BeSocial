@@ -1,16 +1,16 @@
 const mongoose = require('mongoose')
 
-mongoose.connect("mongodb://localhost/BeSocial", { useNewUrlParser: true, useUnifiedTopology: true,'useCreateIndex': true });
 
 let friendSchema = new mongoose.Schema({
-    Friendname : String,
+    name : String,
     isFollower : Boolean,
     isFollowing : Boolean,
     posts: [{
+        post_id:String,
         postDesc : String,
-        postUrl : Array,
+        postUrl : [],
     }]
 })
 
-let friend = mongoose.model("friend", friendSchema)
-module.exports = friend
+let Friend = mongoose.model("friend", friendSchema)
+module.exports =Friend

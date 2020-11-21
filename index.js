@@ -5,7 +5,11 @@ const friend = require('./models/friends')
 const post = require('./models/post')
 const comment = require('./models/comment')
 const chat  = require('./models/chat')
+const mongoose = require('mongoose')
 const app = express()
+
+mongoose.connect("mongodb://localhost/BeSocial", { useNewUrlParser: true, useUnifiedTopology: true,'useCreateIndex': true });
+
 
 app.get("/",(req,res) =>{
     res.send("Welcome to Besocial")
