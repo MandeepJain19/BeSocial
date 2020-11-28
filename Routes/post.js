@@ -1,22 +1,22 @@
 const express = require('express')
 const router = express.Router()
 
-router.get("/:name/:id", (req,res)=>{
+router.get("/post/:name/:id", (req,res)=>{
     res.send("post id "+ req.params.id)
 })
-router.post("/:name/:id/comment", (req,res)=>{
+router.post("/post/:name/:id/comment", (req,res)=>{
     res.send("comment on post")
 })
-router.delete("/:name/:id/:commentid", (req,res)=>{
+router.delete("/post/:name/:id/:commentid", (req,res)=>{
     res,send("delete comment")
 })
-router.post("/:name/post",(req,res)=>{
+router.post("/newpost/:name",(req,res)=>{
     res.send("New Post")
 })
-router.put("/:name/:id/edit",(req,res)=>{
+router.put("/edit/:name/:id",(req,res)=>{
     res.send("update post")
 })
-router.delete(":name/:id/delete",(req,res)=>{
+router.delete("/delete/:name/:id",(req,res)=>{
     res.send("delete post "+req.params.id)
 })
 
