@@ -1,13 +1,13 @@
 const express = require('express')
 const router = express.Router()
 
-router.get("/profile/:name",(req,res)=>{
+router.get("/profile/:username",(req,res)=>{
     res.send(req.params.name + "'s  profile")
 })
-router.put("/edit/:name",(req,res)=>{
+router.put("/edit/:username",(req,res)=>{
     res.send("update profile")
 })
-router.post("/delete/:name",(req,res)=>{
+router.post("/delete/:username",(req,res)=>{
     res.send("delete profile")
 })
 

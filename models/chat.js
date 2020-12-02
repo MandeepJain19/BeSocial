@@ -7,6 +7,7 @@ let chatSchema = mongoose.Schema({
     message : String,
     dateTime : {type: Date,default: Date.now},
     status : String,
+    image:[]
 })
 let chat =  mongoose.model("chat", chatSchema)
 module.exports = chat

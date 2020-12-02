@@ -1,11 +1,12 @@
 const express = require('express')
 const router = express.Router()
 
-router.get("/inbox", (req,res)=>{
-    res.send("inbox")
+
+router.post("/message/:username",(req,res)=>{
+    res.send("send message")
 })
-router.get("/inbox/:id", (req,res)=>{
-    res.send("inbox")
+router.post("/messageall",(req,res)=>{
+    res.send("message to all")
 })
 
 module.exports = router

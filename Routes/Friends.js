@@ -1,13 +1,13 @@
 const express = require('express')
 const router = express.Router()
 
-router.get("/followers/:name",(req,res)=>{
-    res.send(req.params.name + "'s  followers")
+router.get("/followers",(req,res)=>{
+    res.send( "  followers")
 })
-router.get("/following/:name",(req,res)=>{
-    res.send(req.params.name + "'s  following")
+router.get("/following",(req,res)=>{
+    res.send( "  following")
 })
-router.delete("/deletefriend/:name/:id",(req,res)=>{
+router.delete("/deletefriend/:username/:id",(req,res)=>{
     res.send("remove friend")
 })
 router.post("/addFriend", (req,res)=>{

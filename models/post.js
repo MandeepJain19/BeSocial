@@ -6,15 +6,19 @@ let postSchema = mongoose.Schema({
     postUrl : [],
     commentId : [{
         Friend_id:String,
-        commentDesc : String,
-        name : String, 
+        commentDesc : String, 
     }],
     likesDetails : [{
          Friend_id:String,
          name:String
     }],
     Likes : Number,
+    dislike : Number,
     date : {type: Date,default: Date.now},
+    taglist:[{
+        username:String,
+    }
+    ]
 }) 
 let Post = mongoose.model("post", postSchema)
 module.exports = Post

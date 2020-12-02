@@ -16,7 +16,7 @@ const app = express()
 
 mongoose.connect("mongodb://localhost/BeSocial", { useNewUrlParser: true, useUnifiedTopology: true,'useCreateIndex': true });
 
-app.use('/', homeRoutes,loginSignupRoutes,friendsRoutes,profileRoutes,postRoutes,chatsRoutes)
+app.use('/BeSocial', homeRoutes,loginSignupRoutes,friendsRoutes,profileRoutes,postRoutes,chatsRoutes)
 
 
 

@@ -6,9 +6,13 @@ let userSchema = new mongoose.Schema({
     password: {type : String, exists: true},
     userName: {type : String, exists: true, unique : true},
     mobile : {type : String},
-    gender : {type : String},
     profileImg : {type : String},
     emailId : {type : String},
+    DOB:Date,
+    friendRequest:[{
+      user_id:String,
+      username:String
+    }],
     postList : [{
        
         postDesc : String,
@@ -17,13 +21,14 @@ let userSchema = new mongoose.Schema({
     followersCount : Number,
     followingCount : Number,
     followersList : [{
-         name : String,
+         user_id:String,
+         username : String,
     }],
     followingList :  [{
-              
-        name : String,
+            user_id:String,
+            username : String,
     }],
-  
+  isprivate:Boolean
 })
 
 let User = mongoose.model("user", userSchema)
