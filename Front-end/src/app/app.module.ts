@@ -13,6 +13,9 @@ import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
 import { LoginComponent } from './Authentication/login/login.component';
 import { SignupComponent } from './Authentication/signup/signup.component';
+import { ProfileComponent } from './User/profile/profile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -22,7 +25,8 @@ import { SignupComponent } from './Authentication/signup/signup.component';
     NavbarComponent,
     FooterComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,8 @@ import { SignupComponent } from './Authentication/signup/signup.component';
     ComponentsModule,
     ExamplesModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
