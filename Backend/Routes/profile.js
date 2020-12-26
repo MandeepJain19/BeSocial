@@ -7,7 +7,7 @@ router.get("/profile/:username",(req,res)=>{
 router.put("/edit/:username",(req,res)=>{
     res.send("update profile")
 })
-router.post("/delete/:username",(req,res)=>{
+router.post("/profile/:username",(req,res)=>{
     res.send("delete profile")
 })
 

@@ -12,7 +12,7 @@ router.post("/login", (req,res)=>{
     res.send("post login")
 })
 
-router.post("/newPassword/:username", (req,res)=>{
+router.post("/newpassword/:username", (req,res)=>{
     res.send("post login")
 })
 

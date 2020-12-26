@@ -7,13 +7,13 @@ router.get("/followers",(req,res)=>{
 router.get("/following",(req,res)=>{
     res.send( "  following")
 })
-router.delete("/deletefriend/:username/:id",(req,res)=>{
+router.delete("/unfollow/:username",(req,res)=>{
     res.send("remove friend")
 })
-router.post("/addFriend", (req,res)=>{
+router.post("/postfriend/:username", (req,res)=>{
     res.send("Friend request")
 })
-router.post("/confirmReq", (req,res)=>{
+router.post("/confirmreq", (req,res)=>{
     res.send("confirm req")
 })
 
