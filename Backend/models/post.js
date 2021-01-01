@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const comment = require('./comment');
-const user = require('./users');
+const Comment = require('./comment');
+const User = require('./users');
 
 let postSchema = mongoose.Schema({
     caption : String,
@@ -8,19 +8,19 @@ let postSchema = mongoose.Schema({
     comment : [
         {
         type: mongoose.Schema.Types.ObjectId,
-        ref: comment
+        ref: Comment
         }
     ] ,
     likesDetails : [
         {
         type: mongoose.Schema.Types.ObjectId,
-        ref: user
+        ref: User
         }
    ],
    dislikeDetails : [
     {
     type: mongoose.Schema.Types.ObjectId,
-    ref: user
+    ref: User
     }
 ],
     Likes : Number,
@@ -28,7 +28,7 @@ let postSchema = mongoose.Schema({
     date : {type: Date,default: Date.now},
     taglist:[{
         type: mongoose.Schema.Types.ObjectId,
-         ref: user
+         ref: User
           }
         ]
 }) 

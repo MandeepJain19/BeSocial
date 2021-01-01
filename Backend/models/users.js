@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const Post = require('./post')
+const mongoose = require('mongoose');
+const Post = require('./post');
 
 let userSchema = new mongoose.Schema({
     name:String,
@@ -33,5 +33,5 @@ let userSchema = new mongoose.Schema({
   
 })
 
-let User = mongoose.model("user", userSchema)
+let User = mongoose.model("user", userSchema);
 module.exports = User

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'); 
 const Post = require('./post'); 
 
-let schema = mongoose.Schema({
+let adminSchema = mongoose.Schema({
     name:String,
     password:String,
     reportedPost : [{
@@ -9,3 +9,6 @@ let schema = mongoose.Schema({
         ref : Post
     }],
 })
+
+let Admin = mongoose.model("admin", adminSchema)
+module.exports = Admin
