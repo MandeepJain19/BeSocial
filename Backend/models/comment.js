@@ -11,8 +11,8 @@ let commentSchema = mongoose.Schema({
     likeCount : Number,
     dislikeCount : Number,
     likeUnlikeDetails : [{
-        user_id:string,
-        username:string
+        user_id : String,
+        username:String
     }]
 })
 let Comment = mongoose.model("comment", commentSchema)
