@@ -7,7 +7,7 @@
                       <div class="card card-register">
                           <h3 class="title">Welcome Back</h3>
                          
-                          <form class="register-form" ngModel name="loginform" #loginform="ngModel">
+                          <form class="register-form" >
                               <label>Email</label>
                               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
                                 <div class="input-group-prepend">
@@ -33,11 +33,13 @@
                                 <div class="alert alert-danger" *ngIf="!password.valid">Enter valid Password</div>
                                <div class="alert alert-danger" *ngIf="password.errors.pattern">Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters</div>
                             </div>
-                              <button [disabled]="loginform.invalid" class="btn btn-danger btn-block btn-round">Login </button>
+                              <button  class="btn btn-danger btn-block btn-round">Login </button>
                           </form>
                           <div class="forgot">
                               <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
                           </div>
+                          <!--<div  (click)="moveToSignup()"   style="width: 100px; float: right;"><a  href="#"></a></div>-->
+                          <div class="float right "><button (click)="moveToSignup()" class="ui right floated circular basic blue button" >Sign-Up</button></div>
                       </div>
                     </div>
                 </div>

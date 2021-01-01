@@ -1,18 +1,18 @@
 const mongoose = require('mongoose')
-
+const user = require('./users')
 
 let commentSchema = mongoose.Schema({
     comment : String,
     authorDetails :[{
-        user_id:String,
-        username:String
+        type: mongoose.Schema.Types.ObjectId,
+        ref : user
     }],
     date : {type: Date,default: Date.now},
     likeCount : Number,
     dislikeCount : Number,
-    likeUnlikeDetails : [{
-        user_id : String,
-        username:String
+    likeDetails : [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref : user
     }]
 })
 let Comment = mongoose.model("comment", commentSchema)

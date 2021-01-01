@@ -1,9 +1,16 @@
 const mongoose = require('mongoose')
+const User = require('./users')
 
 
 let chatSchema = mongoose.Schema({
-    sender_id : {type : String, exists: true},
-    receiver_id : {type : String, exists: true},
+    sender_id : {type : mongoose.Schema.Types.ObjectId,
+                    ref: User,
+                    exists: true
+                },
+    receiver_id : {type : mongoose.Schema.Types.ObjectId,
+                        ref: User,
+                        exists: true
+                  },
     message : String,
     dateTime : {type: Date,default: Date.now},
     status : String,

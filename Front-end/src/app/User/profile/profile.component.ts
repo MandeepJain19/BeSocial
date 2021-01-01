@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   click2:boolean=false;
    buttn = "ui red basic button";
    buttn2 = "ui black basic button";
-   
+   //like
   toggle(){
     if(!this.click2){
       if(!this.show){
@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
       }
    }
   }
+  //dislike
   toggle2(){
     if(!this.click1){
       if(!this.show){
@@ -46,6 +47,26 @@ export class ProfileComponent implements OnInit {
         this.click2=false
       }
   }
+  }
+  toogleProp: boolean = true//follow
+  toogleProp2: boolean = true//following
+  toogleFollow(){
+    if(this.toogleProp2){
+      if(this.toogleProp){
+        this.toogleProp = false
+      }else{
+        this.toogleProp = true
+      }
+    }
+  }
+  toogleFollowing(){
+    if(this.toogleProp){
+      if(this.toogleProp2){
+        this.toogleProp2 = false
+      }else{
+        this.toogleProp2 = true
+      }
+    }
   }
 
   constructor() { }

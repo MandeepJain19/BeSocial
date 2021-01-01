@@ -2,7 +2,11 @@ const express = require('express')
 const router = express.Router()
 
 router.get("/followers",(req,res)=>{
-    res.send( "  followers")
+    res.send({
+        name:"mandeep",
+        url:"cdcdccc",
+        caption:"best post ever "
+    })
 })
 router.get("/following",(req,res)=>{
     res.send( "  following")

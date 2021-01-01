@@ -1,9 +1,11 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose'); 
+const Post = require('./post'); 
+
 let schema = mongoose.Schema({
     name:String,
     password:String,
     reportedPost : [{
-        post_id:String,
-        username:String
+        type : mongoose.Schema.Types.ObjectId,
+        ref : Post
     }],
 })

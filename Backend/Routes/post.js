@@ -2,7 +2,16 @@ const express = require('express')
 const router = express.Router()
 
 router.get("post/:username", (req,res)=>{
+    req.send("post "+ req.params.username)
 //all post
+})
+router.get("posts/check", (req,res)=>{
+    req.send({
+        "name":"mandeep",
+        "url":"cdcdccc",
+        "caption":"best post ever "
+    })
+//check check
 })
 router.get("tagpost/:username"), (req,res)=>{
 //tag post

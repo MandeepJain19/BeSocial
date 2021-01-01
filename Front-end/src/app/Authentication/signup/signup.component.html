@@ -6,7 +6,7 @@
                     <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
                       <div class="card fadeInRight card-register">
                           <h3 class="title">Welcome</h3>
-                          <form class="register-form" ngModel name="signform" #signform="ngModel" >
+                          <form class="register-form" #signupForm = "ngForm" (ngSubmit) = onClickSubmit(signupForm.value) enctype="multipart/form-data">
                             <label>Profile Picture</label>
                             <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
                               <div class="input-group-prepend">
@@ -15,7 +15,7 @@
                                 </span>
                               </div>
 
-                                <input required type="file" class="form-control" placeholder="Select image" accept="image/*" (focus)="focus=true" (blur)="focus=false" >
+                                <input ngModel name="profileImage" #name="ngModel" type="file" class="form-control" placeholder="Select image" accept="image/*" (change)="selectImage($event)" (focus)="focus=true" (blur)="focus=false" >
                             </div>
                             <label>Name</label>
                               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
@@ -52,7 +52,7 @@
                                   </span>
                                 </div>
 
-                                  <input type="text" class="form-control" placeholder="UserName" (focus)="focus=true" (blur)="focus=false" >
+                                  <input type="text" ngModel name="Username"  class="form-control" placeholder="UserName" (focus)="focus=true" (blur)="focus=false" >
                               </div>
 
                               <label>DOB</label>
@@ -82,7 +82,9 @@
                               <div class="alert alert-danger" *ngIf="password.errors.pattern">Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters</div>
                               
                             </div>
-                              <button  type="submit" [disabled]="!signform.valid" class="btn btn-danger btn-block btn-round">Register</button>
+                            
+                              <button [disabled]="!signupForm.valid" type="submit" value="submit" class="btn btn-danger btn-block btn-round">Register</button><br>
+                              <div  (click)="moveToLogin()" class="ui right floated circular basic blue button "><a  href="#">Login</a></div>
                           </form>
                           
                       </div>

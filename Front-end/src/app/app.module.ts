@@ -15,6 +15,8 @@ import { LoginComponent } from './Authentication/login/login.component';
 import { SignupComponent } from './Authentication/signup/signup.component';
 import { ProfileComponent } from './User/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http'
+import { UserService } from './services/user.service';
 
 
 
@@ -36,11 +38,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterModule,
     ComponentsModule,
     ExamplesModule,
-    AppRoutingModule,
+   
     BrowserAnimationsModule,
-  
+    HttpClientModule,
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
