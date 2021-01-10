@@ -1,4 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -8,16 +9,29 @@ export class UserService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json; charset=utf-8',
-     // enctype: "multipart/form-data"
+      'Content-Type': 'appliction/JSON'
   })
 }
-  
-  constructor(private http: HttpClient) { }
 
-  register(body :any[]){
-    console.log(body)
-    return this.http.post("http://localhost:7860/signup",body)
+formData : String[] = new Array
+
+  constructor(private http: HttpClient) { }
+ 
+  register(formData: FormData){
+  
+    return this.http.post("http://localhost:7860/signup",formData)
+  }
+
+  login(body: any){
+    return this.http.post("http://localhost:7860/login",body,{
+      observe:'body',
+      withCredentials:true,
+      headers:new HttpHeaders().append('Content-Type','application/json')
+    });
+  }
+  
+  getuser(){
+    return this.http.get("http://localhost:7860/")
   }
 
 }

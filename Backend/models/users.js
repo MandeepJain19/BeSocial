@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 const Post = require('./post');
+const Schema = mongoose.Schema;
+const bcrypt = require('bcrypt');
 
 let userSchema = new mongoose.Schema({
-    name:String,
+    name:{type : String, exists: true},
     password: {type : String, exists: true},
-    username: {type : String, exists: true},
-    profileImg : {type : String},
-    email : {type : String, exists: true},
+    username: {type : String, exists: true, unique: true},
+    img : {type : String},
+    email : {type : String, exists: true, unique: true},
     DOB:{type : String} ,
     isprivate: {type : Boolean, default : true},
     post: [
@@ -32,6 +34,14 @@ let userSchema = new mongoose.Schema({
     }]
   
 })
+
+userSchema.statics.hashPassword = function hashPassword(password){
+  return bcrypt.hashSync(password,10);
+}
+
+userSchema.methods.isValid = function(hashedpassword){
+  return  bcrypt.compareSync(hashedpassword, this.password);
+}
 
 let User = mongoose.model("user", userSchema);
 module.exports = User

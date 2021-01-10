@@ -1,12 +1,15 @@
 <div class="wrapper">
     <div class="page-header" style="background-image: url('./assets/img/mdboot.jpg');">
         <div class="filter"></div>
-            <div class="container">
-                <div class="row">
+          <div class="container">
+            
+              <div class="row" ngif>
                     <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
                       <div class="card fadeInRight card-register">
-                          <h3 class="title">Welcome</h3>
-                          <form class="register-form" #signupForm = "ngForm" (ngSubmit) = onClickSubmit(signupForm.value) enctype="multipart/form-data">
+                        <ngb-alert *ngIf="httpError" [type]="errorType" [class]="alertClass" (click)="close()"> {{errorMsg}} </ngb-alert>
+                        
+                          <h3 class="title">Welcome to BeSocial</h3>
+                          <form class="register-form"  #signupForm = "ngForm"  (ngSubmit) = onClickSubmit(signupForm.value) enctype="multipart/form-data">
                             <label>Profile Picture</label>
                             <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
                               <div class="input-group-prepend">
@@ -15,7 +18,7 @@
                                 </span>
                               </div>
 
-                                <input ngModel name="profileImage" #name="ngModel" type="file" class="form-control" placeholder="Select image" accept="image/*" (change)="selectImage($event)" (focus)="focus=true" (blur)="focus=false" >
+                                <input ngModel name="profileImage"  type="file" class="form-control" placeholder="Select image" accept="image/*" (change)="selectImage($event)" (focus)="focus=true" (blur)="focus=false" >
                             </div>
                             <label>Name</label>
                               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
@@ -25,12 +28,12 @@
                                   </span>
                                 </div>
 
-                                  <input required minlength="3" ngModel name="name" #name="ngModel" type="text" pattern="[A-Za-z]{2,}" class="form-control" placeholder="Name" (focus)="focus=true" (blur)="focus=false" >
+                                  <input required minlength="3" ngModel name="name" #name="ngModel" type="text" pattern="[A-Za-z0-9\s]{2,}" class="form-control" placeholder="Name" (focus)="focus=true" (blur)="focus=false" >
                               </div>
                               <div   *ngIf="!name.valid && name.touched"> 
                                 <div class="alert alert-danger" *ngIf="name.errors.required"> Name Required </div>
                                 <div class="alert alert alert-danger"  *ngIf="name.errors.minlength"> Name must be at least 3 character long  </div>
-                                <div class="alert alert-danger" *ngIf="name.errors.pattern"> Alphabets only </div>
+                                <div class="alert alert-danger" *ngIf="name.errors.pattern"> Alphanumeric only</div>
                             </div>
                               <label>Email</label>
                               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
@@ -40,11 +43,11 @@
                                   </span>
                                 </div>
 
-                                  <input required email ngModel name="email" #email="ngModel" type="email" class="form-control" placeholder="Email" (focus)="focus=true" (blur)="focus=false" >
+                                <input required email ngModel name="email" #email="ngModel" type="text" class="form-control" placeholder="Email" (focus)="focus=true" (blur)="focus=false" >
                               </div>
                               <div class="alert alert alert-danger"  *ngIf="!email.valid && email.touched"> Enter Valid Email</div>
 
-                              <label>UserName</label>
+                              <label>User-Name</label>
                               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text">
@@ -52,22 +55,13 @@
                                   </span>
                                 </div>
 
-                                  <input type="text" ngModel name="Username"  class="form-control" placeholder="UserName" (focus)="focus=true" (blur)="focus=false" >
+                                  <input  required minlength ="3" type="text" ngModel name="username" #username="ngModel" pattern="[A-Za-z0-9\s]{2,}" class="form-control" placeholder="UserName" (focus)="focus=true" (blur)="focus=false" >
                               </div>
-
-                              <label>DOB</label>
-                              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text">
-                                    <i class="nc-icon nc-calendar-60"></i>
-                                  </span>
-                                </div>
-
-                                  <input required date ngModel  name="date" #date="ngModel" type="date" [max]= "maxDate"  class="form-control"  (focus)="focus=true" (blur)="focus=false" >
-                              </div>
-                             
-                              <div class="alert alert-danger" *ngIf="!date.valid && date.touched ">Enter valid date</div>
-                            
+                              <div   *ngIf="!username.valid && username.touched"> 
+                                <div class="alert alert-danger" *ngIf="username.errors.required"> Name Required </div>
+                                <div class="alert alert alert-danger"  *ngIf="username.errors.minlength"> Name must be at least 3 character long  </div>
+                                <div class="alert alert-danger" *ngIf="username.errors.pattern"> Alphabets only (no space) </div>
+                            </div>
                               <label>Password</label>
                               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
                                 <div class="input-group-prepend">
@@ -83,7 +77,7 @@
                               
                             </div>
                             
-                              <button [disabled]="!signupForm.valid" type="submit" value="submit" class="btn btn-danger btn-block btn-round">Register</button><br>
+                              <button [disabled]="!signupForm.valid " type="submit" value="submit" class="btn btn-danger btn-block btn-round">Register</button><br>
                               <div  (click)="moveToLogin()" class="ui right floated circular basic blue button "><a  href="#">Login</a></div>
                           </form>
                           

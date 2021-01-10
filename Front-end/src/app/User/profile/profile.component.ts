@@ -1,5 +1,6 @@
 import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'app/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +15,7 @@ export class ProfileComponent implements OnInit {
   click2:boolean=false;
    buttn = "ui red basic button";
    buttn2 = "ui black basic button";
+   userdata:any[];
    //like
   toggle(){
     if(!this.click2){
@@ -69,9 +71,15 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  constructor( private user : UserService) { }
 
   ngOnInit(): void {
+    this.user.getuser().subscribe((response:any[])=>{
+      this.userdata= response
+      console.log(this.userdata)
+    })
   }
+
+
 
 }

@@ -17,6 +17,9 @@ import { ProfileComponent } from './User/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http'
 import { UserService } from './services/user.service';
+import { HomeComponent } from './User/home/home.component';
+import { NgFlashModule} from 'ng-flash';
+
 
 
 
@@ -28,7 +31,8 @@ import { UserService } from './services/user.service';
     FooterComponent,
     LoginComponent,
     SignupComponent,
-    ProfileComponent
+    ProfileComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,10 @@ import { UserService } from './services/user.service';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    NgFlashModule,
+    
+    
+  
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
