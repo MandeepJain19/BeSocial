@@ -19,6 +19,10 @@ import {HttpClientModule} from '@angular/common/http'
 import { UserService } from './services/user.service';
 import { HomeComponent } from './User/home/home.component';
 import { NgFlashModule} from 'ng-flash';
+import { AddpostComponent } from './User/post/addpost/addpost.component';
+import { EditpostComponent } from './User/post/editpost/editpost/editpost.component';
+import { ChatoutsideComponent } from './User/chats/chatoutside/chatoutside.component';
+
 
 
 
@@ -32,7 +36,10 @@ import { NgFlashModule} from 'ng-flash';
     LoginComponent,
     SignupComponent,
     ProfileComponent,
-    HomeComponent
+    HomeComponent,
+    AddpostComponent,
+    EditpostComponent,
+    ChatoutsideComponent
   ],
   imports: [
     BrowserModule,

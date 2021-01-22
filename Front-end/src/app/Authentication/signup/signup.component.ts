@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { EmailValidator, NgForm, NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
