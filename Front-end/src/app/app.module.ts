@@ -19,9 +19,12 @@ import {HttpClientModule} from '@angular/common/http'
 import { UserService } from './services/user.service';
 import { HomeComponent } from './User/home/home.component';
 import { NgFlashModule} from 'ng-flash';
-import { AddpostComponent } from './User/post/addpost/addpost.component';
+
 import { EditpostComponent } from './User/post/editpost/editpost/editpost.component';
 import { ChatoutsideComponent } from './User/chats/chatoutside/chatoutside.component';
+import { Globals } from './global';
+import { UploadpostComponent } from './User/post/uploadpost/uploadpost.component';
+import { EditProfileComponent } from './User/edit-profile/edit-profile.component';
 
 
 
@@ -37,9 +40,11 @@ import { ChatoutsideComponent } from './User/chats/chatoutside/chatoutside.compo
     SignupComponent,
     ProfileComponent,
     HomeComponent,
-    AddpostComponent,
+  
     EditpostComponent,
-    ChatoutsideComponent
+    ChatoutsideComponent,
+    UploadpostComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +63,7 @@ import { ChatoutsideComponent } from './User/chats/chatoutside/chatoutside.compo
     
   
   ],
-  providers: [UserService],
+  providers: [UserService, NavbarComponent, Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,71 @@
+
+<div class="wrapper">
+    <div class="page-header" style="background-image: url('./assets/img/i1.jpg');">
+        <div class="filter"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
+                      <div class="card fadeInRight card-register">
+                          <h3 class="title">Edit Profile</h3>
+                          <form class="register-form" ngModel name="signform" #signform="ngModel">
+                           
+
+                    
+                            <app-header></app-header>
+                            <div class="container text-center">
+                                <img [src] = "url" height="200"  class="mx-auto d-block" style="width:90%" alt="Rounded Image" class="img-circle img-no-padding img-responsive">
+                                <br>
+                               <input type="file" (change)="onselectFile($event)"  class="form-control" placeholder="Select image" accept="image/*" (focus)="focus=true" (blur)="focus=false"><br>
+                           
+                            </div>
+                          
+
+
+                            <label>Name</label>
+                            <input type="text" class="form-control" placeholder="" (focus)="focus=true" (blur)="focus=false" >
+                        
+                              
+                              <label>UserName</label>
+                              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                    <i class="nc-icon nc-circle-10"></i>
+                                  </span>
+                                </div>
+                                </div>
+                              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                               <input type="text" class="form-control" placeholder="" (focus)="focus=true" (blur)="focus=false" >
+                              </div>
+
+                              <label>Bio</label>
+                              <div class="form-group"> 
+                                <textarea class="form-control" rows="3" placeholder=""></textarea>
+                              </div>
+
+                             
+
+
+                              <div ngbDropdown class="d-inline-block dropdown">
+                                <a  id="dropdownBasic1" ngbDropdownToggle>Personal Information Settings</a>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-primary">
+                                   
+                                   <a class="dropdown-item">Phone number</a>
+                                   <a class="dropdown-item">Gender</a>
+                                   <a class="dropdown-item">Birthday</a>
+                                   
+                                </div>
+                              </div>
+                              <div class="form-group"> 
+                                <textarea class="form-control"  placeholder=""></textarea>
+                               </div>
+                        </form>
+                          
+                      </div>
+                    </div>
+                </div>
+                <div class="footer register-footer text-center">
+                    <h6>&copy;{{test | date: 'yyyy'}}, made with <i class="fa fa-heart heart"></i> by BeSocial </h6>
+                </div>
+            </div>
+
+</div>

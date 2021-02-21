@@ -11,9 +11,10 @@ import { ProfileComponent } from './User/profile/profile.component';
 import { HomeComponent } from './User/home/home.component';
 
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { AddpostComponent } from './User/post/addpost/addpost.component';
+
 import { EditpostComponent } from './User/post/editpost/editpost/editpost.component';
 import { ChatoutsideComponent } from './User/chats/chatoutside/chatoutside.component';
+import { UploadpostComponent } from './User/post/uploadpost/uploadpost.component';
 
 
 
@@ -27,7 +28,7 @@ const routes: Routes =[
     { path: 'profile', component: ProfileComponent },
     { path: 'nav', component: NavbarComponent },
     { path: 'icon',component: NucleoiconsComponent },
-    { path: 'addpost',component: AddpostComponent},
+    { path: 'addpost',component: UploadpostComponent},
     { path: 'editpost',component: EditpostComponent},
     { path: 'chatoutside',component: ChatoutsideComponent}
     

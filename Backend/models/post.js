@@ -3,6 +3,7 @@ const Comment = require('./comment');
 const User = require('./users');
 
 let postSchema = mongoose.Schema({
+    author : String,
     caption : String,
     postUrl : [],
     comment : [
@@ -23,8 +24,8 @@ let postSchema = mongoose.Schema({
     ref: User
     }
 ],
-    Likes : Number,
-    dislike : Number,
+    Likes : {type: Number, default: 0},
+    dislike : {type: Number, default: 0},
     date : {type: Date,default: Date.now},
     taglist:[{
         type: mongoose.Schema.Types.ObjectId,

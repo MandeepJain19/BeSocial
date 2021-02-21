@@ -1,7 +1,6 @@
 const Port = 7860;
 const express = require('express')
 const user = require('./models/users')
-
 const post = require('./models/post')
 const comment = require('./models/comment')
 const chat  = require('./models/chat')
@@ -27,7 +26,8 @@ app.use(cors({
     credentials:true
   }));
 
-mongoose.connect("mongodb://localhost/BeSocial", { useNewUrlParser: true, useUnifiedTopology: true,'useCreateIndex': true });
+mongoose.connect("mongodb+srv://mandeepjain:8982152230@cluster0.pktvv.mongodb.net/BeSocial?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true,'useCreateIndex': true });
+
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));//use for get data from form

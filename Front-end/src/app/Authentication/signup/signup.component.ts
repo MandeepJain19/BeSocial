@@ -56,7 +56,7 @@ close(){
                     this.httpError = true;
                     this.errorMsg = error.error
                     this.errorType = 'danger'
-                    this.alertClass = "visible";    
+                    this.alertClass = "visible"
             }
         )
     }

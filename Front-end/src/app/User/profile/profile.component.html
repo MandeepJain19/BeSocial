@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="usersdata">
     <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/fabio-mangione.jpg');">
         <div class="filter"></div>
     </div>
@@ -6,10 +6,10 @@
         <div class="container">
             <div class="owner">
                 <div class="avatar">
-                    <img src="./assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                    <img src="{{'../../../assets/img/Uploads/Profile image/'+usersdata.img}}" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                 </div>
                 <div class="name">
-                    <h4 class="title">Jane Faker<br /></h4>
+                    <h4 class="title">{{usersdata.name}}<br /></h4>
                     <h6 class="description">Music Producer</h6>
                 </div>
             </div>
@@ -27,9 +27,63 @@
             </div>
             <div [hidden]="toogleProp"><br>
                 <div class="row following" id="follows">
-                    <div class="col-md-6 ml-auto mr-auto">
+                    <div class="col-md-6 ml-auto mr-auto" style="height:400px;overflow: auto; overflow-y: scroll">
                         <ul class="list-unstyled follows">
                             <li>
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-2 ml-auto mr-auto">
+                                        <img src="./assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                    </div>
+                                    <div class="col-md-7 col-sm-4 ml-auto">
+                                        <h6>Flume<br/><small>Musical Producer</small></h6>
+                                    </div>
+                                    <div class="col-md-3 col-sm-2 ml-auto mr-auto">
+                                        <div class="form-check">
+                                          <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" value="" checked="">
+                                            <span class="form-check-sign"></span>
+                                          </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <hr /><li>
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-2 ml-auto mr-auto">
+                                        <img src="./assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                    </div>
+                                    <div class="col-md-7 col-sm-4 ml-auto">
+                                        <h6>Flume<br/><small>Musical Producer</small></h6>
+                                    </div>
+                                    <div class="col-md-3 col-sm-2 ml-auto mr-auto">
+                                        <div class="form-check">
+                                          <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" value="" checked="">
+                                            <span class="form-check-sign"></span>
+                                          </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <hr /><li>
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-2 ml-auto mr-auto">
+                                        <img src="./assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                    </div>
+                                    <div class="col-md-7 col-sm-4 ml-auto">
+                                        <h6>Flume<br/><small>Musical Producer</small></h6>
+                                    </div>
+                                    <div class="col-md-3 col-sm-2 ml-auto mr-auto">
+                                        <div class="form-check">
+                                          <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" value="" checked="">
+                                            <span class="form-check-sign"></span>
+                                          </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <hr /><li>
                                 <div class="row">
                                     <div class="col-md-2 col-sm-2 ml-auto mr-auto">
                                         <img src="./assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
@@ -70,23 +124,23 @@
                     </div>
                 </div>
             </div>
-            <div  [hidden]="toogleProp2"><br>
+            <div  [hidden]="toogleProp2" style="height:400px;overflow: auto; overflow-y: scroll; vertical-align: middle;"><br>
                 <h3 class="text-muted">Not following anyone yet :(</h3>
                 <br>
-                <button class="btn btn-warning btn-round">Find artists</button>
+                <button class="btn btn-warning btn-round">Find Friends </button>
              </div>
-        </div>
+           </div>
             <br><hr>
             <br/>
             <div>
                 <div class="row">
-                    <div class="col sm">
+                    <div class="col sm" *ngFor="let post of usersdata.post">
                         <div class="card" style="width: 310px">
-                            <img class="card-img-top" src="../../../assets/img/a11.jpeg"  height="250"alt="Card image">
+                            <img class="card-img-top" src="{{'../../../assets/img/Uploads/UserPosts/'+post.postUrl}}"  height="250"alt="Card image">
                             <div class="card-body">
-                                <img class="ui  avatar image" src="./assets/img/faces/joe-gardner-2.jpg">
-                                <span class="card-title"> <b>John Doe</b> </span>
-                            <br><br><p class="card-text">this is my best profile image ever......</p>
+                                <img class="ui  avatar image" src="{{'../../../assets/img/Uploads/Profile image/'+usersdata.img}}">
+                                <span class="card-title"> <b>{{usersdata.name}}</b> </span>
+                            <br><br><p class="card-text">{{post.caption}}</p>
                               <hr/>
 
                               <div class="ui labeled button" tabindex="0">
@@ -108,69 +162,11 @@
                               <button class="ui right floated basic black button"> <i class="far fa-comment fa-2x "></i></button>
                             </div>
                           </div>
-                    </div>
-                    <div class="col sm">
-                        <div class="card" style="width: 310px">
-                            <img class="card-img-top" src="../../../assets/img/a19.jpg"  height="250"alt="Card image">
-                            <div class="card-body">
-                                <img class="ui  avatar image" src="./assets/img/faces/joe-gardner-2.jpg">
-                                <span class="card-title"> <b>John Doe</b> </span>
-                            <br><br><p class="card-text">this is my best profile image ever......</p>
-                              <hr/>
-
-                              <div class="ui labeled button" tabindex="0">
-                                <div (click)="toggle()" [ngClass]="buttn">
-                                    <i class="far fa-heart"></i> Like
-                                </div> 
-                                <a class="ui basic red left pointing label">
-                                  {{like}}
-                                </a>
-                              </div>
-                              <div class="ui labeled button" tabindex="0">
-                                <div (click)="toggle2()" [ngClass]="buttn2">
-                                    <i class="fas fa-heart-broken"></i> DisLike 
-                                </div>
-                                <a class="ui basic left pointing black label">
-                                    {{dislike}}
-                                  </a>
-                              </div><br><br>
-                              <button class="ui right floated basic black button"> <i class="far fa-comment fa-2x "></i></button>
-                            </div>
-                          </div>
-                    </div>
-                    <div class="col sm">
-                        <div class="card" style="width: 310px">
-                            <img class="card-img-top" src="../../../assets/img/login-image.jpg"  height="250"alt="Card image">
-                            <div class="card-body">
-                                <img class="ui  avatar image" src="./assets/img/faces/joe-gardner-2.jpg">
-                                <span class="card-title"> <b>John Doe</b> </span>
-                            <br><br><p class="card-text">this is my best profile image ever......</p>
-                              <hr/>
-
-                              <div class="ui labeled button" tabindex="0">
-                                <div (click)="toggle()" [ngClass]="buttn">
-                                    <i class="far fa-heart"></i> Like
-                                </div> 
-                                <a class="ui basic red left pointing label">
-                                  {{like}}
-                                </a>
-                              </div>
-                              <div class="ui labeled button" tabindex="0">
-                                <div (click)="toggle2()" [ngClass]="buttn2">
-                                    <i class="fas fa-heart-broken"></i> DisLike 
-                                </div>
-                                <a class="ui basic left pointing black label">
-                                    {{dislike}}
-                                  </a>
-                              </div><br><br>
-                              <button class="ui right floated basic black button"> <i class="far fa-comment fa-2x "></i></button>
-                            </div>
-                          </div>
-                    </div>
-                    
+                        </div>
                 </div>
             </div>
             
+        
             
         </div>
     </div>

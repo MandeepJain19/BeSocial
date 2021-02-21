@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'app/services/user.service';
-
+import {NavbarComponent} from '../../shared/navbar/navbar.component'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   errorMsg;
   errorType;
   public loggedinUser;
-  constructor(private userLogin : UserService, private route : Router) {}
+  constructor(private userLogin : UserService, private route : Router,private nav: NavbarComponent ) {}
+  
    
    moveToSignup(){
     this.route.navigate(['signup'])
@@ -29,13 +30,14 @@ close(){
     console.log(this.alertClass)
    this.alertClass = "invisible"
 }
-
+x:boolean
 onClickSubmit(data){
    this.userLogin.login(data)
    .subscribe(
      data => {
-       //console.log(data)
-       this.route.navigate(['profile'])
+        this.nav.status = true;
+        this.nav.currentUser = data
+        this.route.navigate(['profile'])
       },
      error => {
        console.log(error.message)
@@ -46,5 +48,7 @@ onClickSubmit(data){
      }
    )
 }
+
+
 
 }

@@ -7,9 +7,10 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 const passport= require('passport')
 
+//Multer config
 let storage = Multer.diskStorage({
     destination : function(req, file, cb){
-        cb(null, path.join(__dirname, '../public/profileImage' ));
+        cb(null, path.join(__dirname,'../../Front-end/src/assets/img/Uploads/Profile image'));
     },
     filename : function(req, file, cb){
         cb(null, file.fieldname + '-' + Date.now()+ path.extname(file.originalname) );
@@ -48,6 +49,7 @@ router.post("/signup", upload.single('image'), (req,res)=>{
                         profileImg: req.body.url,
                     });
                     
+                
                     userData.save((err, data) =>{
                         if(err){
                             return res.status(400).send(`Something went Wrong try later`)
@@ -72,7 +74,7 @@ router.post("/login", (req,res,next)=>{
         if (!user) { return res.status(501).send(info); }
         req.logIn(user, function(err) {
           if (err) { return res.status(501).send(err); }
-          return res.status(200).json(user);
+          return res.status(200).json(user.username);
         });
       })(req, res, next);
 
@@ -93,9 +95,34 @@ router.post("/login", (req,res,next)=>{
         }
     })*/
 })
+//profile data 
+router.get("/user",isLoggedin, (req,res)=>{
+    return res.status(200).json(req.user.username)
+})
+//navbar data 
+router.get("/navuser",isLoggedin, (req,res)=>{
+    return res.status(200).json(req.user)
+})
+
+
+router.get("/logout",isLoggedin,(req,res)=>{
+    req.logout()
+    return res.status(200).json("logout Success")
+})
+
+router.get("/dashboard/:username", (req,res)=>{
+
+})
 
 router.post("/newpassword/:username", (req,res)=>{
     res.send("post login")
 })
+
+
+function isLoggedin(req,res,next){
+    if(req.isAuthenticated()) next();
+    else return res.status(401).json({message:'Unauthorized Request'});
+  }
+
 
 module.exports = router

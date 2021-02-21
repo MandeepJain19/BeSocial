@@ -1,3 +1,5 @@
+
+
 .card{
     background-color: rgba(9, 8, 36, 0.5);
     border: 2px solid white;
@@ -7,7 +9,13 @@
 ::placeholder{
     color : rgb(19, 18, 18)
 }
+
 input.ng-touched.ng-invalid{
     border: 1px solid red ;
     box-shadow: 0 0 13px inset rgba(255, 0, 0, 0.671)
+}
+
+img{
+    border-style: solid;
+    border-color: white;
 }

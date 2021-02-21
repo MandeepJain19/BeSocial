@@ -1,5 +1,6 @@
-import { style } from '@angular/animations';
+
 import { Component, OnInit } from '@angular/core';
+import { Router,NavigationEnd } from '@angular/router';
 import { UserService } from 'app/services/user.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { UserService } from 'app/services/user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  
   like:number=15;
   dislike:number=15;
   show :boolean = false;
@@ -24,6 +26,8 @@ export class ProfileComponent implements OnInit {
         this.like++;
         this.show = true
         this.click1=true
+
+        //this.user.like(this.currentuser)
       }
       else{
         this.buttn = "ui red basic button";
@@ -71,13 +75,28 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  constructor( private user : UserService) { }
+  currentuser :string =" ";
+  usersdata: Object
+
+  constructor( private  user: UserService, private route : Router) {
+    this.route.events.subscribe((ev) => {
+      if (ev instanceof NavigationEnd){
+          this.user.user().subscribe(
+            data =>{ console.log("call")
+              this.user.getUser(data)
+              .subscribe(
+                data => {this.usersdata = data, console.log(data)},
+                error => {this.route.navigate(['login'])}
+              )
+            },
+            error => this.route.navigate(['login'])) 
+    }})
+   }
 
   ngOnInit(): void {
-    this.user.getuser().subscribe((response:any[])=>{
-      this.userdata= response
-      console.log(this.userdata)
-    })
+
+
+    
   }
 
 
