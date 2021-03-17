@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="500" >
     <div class="container" >
         <div class="navbar-translate">
-            <a class="navbar-brand" href="https://www.creative-tim.com">BeSocial</a>
+            <a class="navbar-brand" [routerLink]="['/dashboard']" routerLinkActive="router-link-active" >BeSocial</a>
             <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
                 <span class="navbar-toggler-bar"></span>
                 <span class="navbar-toggler-bar"></span>    
@@ -13,19 +13,19 @@
             <ul class="navbar-nav ml-auto" >
                 
                 <li class="nav-item" [hidden]=!status>
-                    <a class="nav-link" rel="tooltip" title="Users" data-placement="bottom" href="https://twitter.com/CreativeTim" >
+                    <a class="nav-link" rel="tooltip" title="Users" data-placement="bottom" [routerLink]="['/users']" routerLinkActive="router-link-active"  >
                         <i class="fas fa-users fa-5x"></i>
                         <p class="d-lg-none"> Users</p>
                     </a>
                 </li>
                 <li class="nav-item" [hidden]=!status >
-                    <a class="nav-link" rel="tooltip" title="Add Post" data-placement="bottom" href="/addpost" >
+                    <a class="nav-link" rel="tooltip" title="Add Post" data-placement="bottom" [routerLink]="['/addpost']" routerLinkActive="router-link-active"  >
                         <i class="fas fa-plus"></i>
                         <p class="d-lg-none"> Add Post</p>
                     </a>
                 </li>
                 <li class="nav-item" [hidden]=!status>
-                    <a class="nav-link" rel="tooltip" title="Activity" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
+                    <a class="nav-link" rel="tooltip" title="Activity" data-placement="bottom" [routerLink]="['/activity']" routerLinkActive="router-link-active" >
                         <i class="fas fa-heart"></i>
                         <p class="d-lg-none"> Activity</p>
                     </a>
@@ -37,8 +37,8 @@
                     </a>
                 </li>
                 <li class="nav-item" [hidden]=!status>
-                    <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="/profile" target="_blank">
-                        <img class="ui avatar image" src="{{'../../../assets/img/Uploads/Profile image/'+currentUser.img}}">
+                    <a class="nav-link" rel="tooltip" title="" data-placement="bottom" [routerLink]="['/profile']" routerLinkActive="router-link-active" >
+                        <img class="ui avatar image" src="{{'http://localhost:7860/public/profile image/'+currentUser.img}}">
                         <span> {{currentUser.username}} </span>
                     </a>
                 </li>

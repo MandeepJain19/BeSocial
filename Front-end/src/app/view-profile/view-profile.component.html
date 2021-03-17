@@ -11,7 +11,7 @@
                 <div class="name">
                     <h3 class="title"><b style="font-size:x-large;text-transform: capitalize;">{{usersdata.name}} </b>({{usersdata.username}})</h3>
                     <!-- <h4 class="title">{{usersdata.username}}<br /></h4> -->
-                    <h6 class="description"><b style="font-size:large;text-transform: capitalize;">{{usersdata.profession}}</b></h6>
+                    <h6 class="description"><b style="font-size:large;text-transform: capitalize;">Web Developer</b></h6>
                 </div>
             </div>
             <div class="row">
@@ -21,10 +21,9 @@
                 </div>
             </div> 
             <br/>
-        <div class="text-center">
-            <div>
-                <span><button [ngClass]=" followersclick ? 'ui red button' : 'ui basic red button'" (click)="toogleFollow()"><b>{{usersdata.followers}}</b> &nbsp;&nbsp; Followers  </button></span><span><button [ngClass]=" followingclick ? 'ui red button' : 'ui basic red button'" (click)="toogleFollowing()"><b>{{usersdata.following }}</b> &nbsp;&nbsp; Following</button><button [routerLink]="['/edit', usersdata.username]"
-                routerLinkActive="router-link-active" class="ui teal button">Edit Profile</button></span>
+        <div class="text-center" >
+            <div >
+                <span><button [ngClass]=" followersclick ? 'ui red button' : 'ui basic red button'" (click)="toogleFollow()"><b>{{usersdata.followers}}</b> &nbsp;&nbsp; Followers  </button></span><span><button [ngClass]=" followingclick ? 'ui red button' : 'ui basic red button'" (click)="toogleFollowing()"><b>{{usersdata.following }}</b> &nbsp;&nbsp; Following</button></span>
             </div>
             <div [hidden]="toogleProp"><br>
                 <div class="row following" id="follows">
@@ -93,8 +92,8 @@
            </div>
             <br><hr>
             <br/>
-            <div>
-                <div class="row">
+            <div *ngFor="let user of usersdata.followersList">
+                <div class="row" *ngIf="user.username === currentuser && usersdata.isprivate === true">
                     <div class="col sm" *ngFor="let post of usersdata.post">
                         <div class="card" style="width: 310px">
                             <img class="card-img-top" src="{{'http://localhost:7860/public/posts/'+post.postUrl}}"  height="250"alt="Card image">

@@ -1,4 +1,6 @@
-
+.page-header{
+    background-image: linear-gradient(to right top,#2193b0 , #6dd5ed);
+}
 
 .card{
     background-color: rgba(9, 8, 36, 0.5);

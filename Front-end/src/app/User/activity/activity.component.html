@@ -1,0 +1,63 @@
+<div class="wrapper">
+    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/dashb-background.jpg');">
+        <div class="filter"></div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div *ngIf="currentuser.followRequest">
+        <div  class="ui raised very padded text container segment" *ngFor="let user of currentuser.followRequest" >
+            <table >
+                <tr>
+                    <td rowspan="2">
+                    
+                            <img  class="ui tiny avatar image"src="{{'http://localhost:7860/public/profile image/'+user.img}}" alt="Circle Image" >
+                    
+                    </td>
+                    <td class="uname">
+                        &nbsp;{{user.username}} 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="uname">
+                    &nbsp;{{user.name}}
+                    </td>
+                </tr>
+                
+            </table>
+            <div  class="ui right floated" >
+                <button class="ui right floated blue button" (click)="rejectReq(user._id)">Reject</button>
+                <button class="ui right floated blue button" (click)="acceptReq(user._id)" >Accept</button>
+            </div>   
+        </div>
+</div>
+      
+<div *ngIf="currentuser.followBackUser">
+    <div  class="ui raised very padded text container segment" *ngFor="let user of currentuser.followBackUser" >
+        <table >
+            <tr>
+                <td rowspan="2">
+                
+                        <img  class="ui tiny avatar image"src="{{'http://localhost:7860/public/profile image/'+user.img}}" alt="Circle Image" >
+                
+                </td>
+                <td class="uname">
+                    &nbsp;{{user.username}} 
+                </td>
+            </tr>
+            <tr>
+                <td class="uname">
+                &nbsp;{{user.name}}
+                </td>
+            </tr>
+            
+        </table>
+        <div  class="ui right floated" >
+            <button class="ui right floated blue button" (click)="followBackUser(user._id)">Follow Back</button>
+        </div>   
+    </div>
+</div>
+
+
+</div>
+

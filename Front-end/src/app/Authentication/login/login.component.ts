@@ -18,10 +18,6 @@ export class LoginComponent implements OnInit {
   public loggedinUser;
   constructor(private userLogin : UserService, private route : Router,private nav: NavbarComponent ) {}
   
-   
-   moveToSignup(){
-    this.route.navigate(['signup'])
-    }
 ngOnInit(): void {
 }
 
@@ -37,7 +33,7 @@ onClickSubmit(data){
      data => {
         this.nav.status = true;
         this.nav.currentUser = data
-        this.route.navigate(['profile'])
+        this.route.navigate(['dashboard'])
       },
      error => {
        console.log(error.message)

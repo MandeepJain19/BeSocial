@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router,ActivatedRoute } from '@angular/router';
+import { UserService } from 'app/services/user.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -6,20 +8,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
-
-  constructor() { }
+username;
+usersdata;
+  constructor(private activatedRoute : ActivatedRoute,private user : UserService, public route : Router, ) {
+    this.activatedRoute.paramMap.subscribe(params => { 
+      this.username= params.get('username'); 
+  })
+  this.user.getUser(this.username).subscribe(
+    data => { 
+      this.usersdata = data
+      console.log(this.usersdata)
+    },
+    error =>{ route.navigate(['profile'])}
+  )
+   }
 
   ngOnInit(): void {
-  }
-  url="";
 
-  onselectFile(e){
-    if(e.target.files){
-      var reader = new FileReader();
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload=(event:any)=>{
-        this.url=event.target.result;
+  }
+
+
+  update(data){
+    console.log(data)
+   
+    this.user.updateProfile(data,this.usersdata.username).subscribe(
+      data => {
+        console.log(data)
+        this.route.navigate(['profile'])
+      },
+      error => {
+        this.route.navigate(['profile'])
       }
-    }
+    )
+
   }
 }

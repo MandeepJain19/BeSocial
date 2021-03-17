@@ -1,0 +1,21 @@
+/*.avatar{
+    
+    border-radius: 50%
+
+}
+.center{
+    margin: auto;
+  width: 60%;
+  border: 3px solid #7d7e7c;
+  padding: 10px;
+  display: inline-block;
+    position: relative;
+    width: 100%;
+    background-size: contain;
+
+}*/
+.uname{
+    
+    font-size: large;
+
+}

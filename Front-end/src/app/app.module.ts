@@ -25,6 +25,10 @@ import { ChatoutsideComponent } from './User/chats/chatoutside/chatoutside.compo
 import { Globals } from './global';
 import { UploadpostComponent } from './User/post/uploadpost/uploadpost.component';
 import { EditProfileComponent } from './User/edit-profile/edit-profile.component';
+import { FindFriendComponent } from './User/find-friend/find-friend.component';
+import { ActivityComponent } from './User/activity/activity.component';
+import { ViewPostComponent } from './view-post/view-post.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 
 
@@ -45,6 +49,10 @@ import { EditProfileComponent } from './User/edit-profile/edit-profile.component
     ChatoutsideComponent,
     UploadpostComponent,
     EditProfileComponent,
+    FindFriendComponent,
+    ActivityComponent,
+    ViewPostComponent,
+    ViewProfileComponent,
   ],
   imports: [
     BrowserModule,

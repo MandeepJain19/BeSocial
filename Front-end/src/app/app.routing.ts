@@ -15,6 +15,11 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { EditpostComponent } from './User/post/editpost/editpost/editpost.component';
 import { ChatoutsideComponent } from './User/chats/chatoutside/chatoutside.component';
 import { UploadpostComponent } from './User/post/uploadpost/uploadpost.component';
+import { FindFriendComponent } from './User/find-friend/find-friend.component';
+import { ActivityComponent } from './User/activity/activity.component';
+import { ViewPostComponent } from './view-post/view-post.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { EditProfileComponent } from './User/edit-profile/edit-profile.component';
 
 
 
@@ -25,13 +30,18 @@ const routes: Routes =[
     { path: 'home',component: ComponentsComponent },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
+    { path: 'profile/:username', component: ViewProfileComponent },
+    { path: 'edit/:username', component: EditProfileComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'nav', component: NavbarComponent },
     { path: 'icon',component: NucleoiconsComponent },
     { path: 'addpost',component: UploadpostComponent},
     { path: 'editpost',component: EditpostComponent},
-    { path: 'chatoutside',component: ChatoutsideComponent}
-    
+    { path: 'chatoutside',component: ChatoutsideComponent},
+    { path: 'users', component: FindFriendComponent },
+    { path: 'activity', component: ActivityComponent },
+    { path: 'post/:id', component: ViewPostComponent }
+
 ];
 
 @NgModule({

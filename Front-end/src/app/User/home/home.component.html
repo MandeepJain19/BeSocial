@@ -1,6 +1,6 @@
 
     <div class="wrapper">
-    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../../../assets/img/dashb-background.jpg');">
+    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/dashb-background.jpg');">
         <div class="filter"></div>
     </div>
     <br>
@@ -8,92 +8,42 @@
     <br>
     <div class="container">
         <div class="row">
-            <div class="col sm">
-                <div class="card" style="width: 310px">
-                    <img class="card-img-top" src="../../../assets/img/a11.jpeg"  height="250"alt="Card image">
-                    <div class="card-body">
-                        <img class="ui  avatar image" src="./assets/img/faces/joe-gardner-2.jpg">
-                        <span class="card-title"> <b>John Doe</b> </span>
-                    <br><br><p class="card-text">this is my best profile image ever......</p>
-                      <hr/>
+            <div class="col sm" *ngFor="let post of posts">
+                    <div class="card" style="width: 310px" >
+                        <a [routerLink]="['/post', post._id]" routerLinkActive="router-link-active" >
 
-                      <div class="ui labeled button" tabindex="0">
-                        <div (click)="toggle()" [ngClass]="buttn">
-                            <i class="far fa-heart"></i> Like
-                        </div> 
-                        <a class="ui basic red left pointing label">
-                          {{like}}
+                        <img class="card-img-top" src="{{'http://localhost:7860/public/posts/'+post.postUrl}}"   height="250"alt="Card image">
                         </a>
-                      </div>
-                      <div class="ui labeled button" tabindex="0">
-                        <div (click)="toggle2()" [ngClass]="buttn2">
-                            <i class="fas fa-heart-broken"></i> DisLike 
+                        <div class="card-body">
+                            <a [routerLink]="['/profile', post.author]" routerLinkActive="router-link-active" >
+                                <img class="ui avatar image"  src="{{'http://localhost:7860/public/profile image/'+post.authorimage}}">
+                                <span class="card-title"> <b>{{post.author}}</b> </span>
+                            </a>
+                            
+                        <br><br><p class="card-text"><i>{{post.caption}}</i></p>
+                          <hr/>
+                        
+                          <div class="ui labeled button" tabindex="0">
+                            <div (click)="toggle(post._id)"  [ngClass]="!post.likedBy.indexOf(currentuser) ? 'ui red button' : 'ui red basic button' ">
+                                <i class="far fa-heart"></i> Like
+                            </div> 
+                            <a class="ui basic red left pointing label">
+                             {{post.likes}}
+                            </a>
+                          </div>
+                          <div class="ui labeled button" tabindex="0">
+                            <div (click)="toggle2(post._id)" [ngClass]="!post.dislikedBy.indexOf(currentuser) ? 'ui black button' : 'ui black basic button' ">
+                                <i class="fas fa-heart-broken"></i> DisLike 
+                            </div>
+                            <a class="ui basic left pointing black label">
+                                {{post.dislikes}}
+                              </a>
+                          </div><br><br>
+                          <button class="ui right floated basic black button"> <i class="far fa-comment fa-2x "></i></button>
                         </div>
-                        <a class="ui basic left pointing black label">
-                            {{dislike}}
-                          </a>
-                      </div><br><br>
-                      <button class="ui right floated basic black button"> <i class="far fa-comment fa-2x "></i></button>
-                    </div>
-                  </div>
-            </div>
-            <div class="col sm">
-                <div class="card" style="width: 310px">
-                    <img class="card-img-top" src="../../../assets/img/a19.jpg"  height="250"alt="Card image">
-                    <div class="card-body">
-                        <img class="ui  avatar image" src="./assets/img/faces/joe-gardner-2.jpg">
-                        <span class="card-title"> <b>John Doe</b> </span>
-                    <br><br><p class="card-text">this is my best profile image ever......</p>
-                      <hr/>
-
-                      <div class="ui labeled button" tabindex="0">
-                        <div (click)="toggle()" [ngClass]="buttn">
-                            <i class="far fa-heart"></i> Like
-                        </div> 
-                        <a class="ui basic red left pointing label">
-                          {{like}}
-                        </a>
                       </div>
-                      <div class="ui labeled button" tabindex="0">
-                        <div (click)="toggle2()" [ngClass]="buttn2">
-                            <i class="fas fa-heart-broken"></i> DisLike 
-                        </div>
-                        <a class="ui basic left pointing black label">
-                            {{dislike}}
-                          </a>
-                      </div><br><br>
-                      <button class="ui right floated basic black button"> <i class="far fa-comment fa-2x "></i></button>
-                    </div>
-                  </div>
-            </div>
-            <div class="col sm">
-                <div class="card" style="width: 310px">
-                    <img class="card-img-top" src="../../../assets/img/login-image.jpg"  height="250"alt="Card image">
-                    <div class="card-body">
-                        <img class="ui  avatar image" src="./assets/img/faces/joe-gardner-2.jpg">
-                        <span class="card-title"> <b>John Doe</b> </span>
-                    <br><br><p class="card-text">this is my best profile image ever......</p>
-                      <hr/>
-
-                      <div class="ui labeled button" tabindex="0">
-                        <div (click)="toggle()" [ngClass]="buttn">
-                            <i class="far fa-heart"></i> Like
-                        </div> 
-                        <a class="ui basic red left pointing label">
-                          {{like}}
-                        </a>
-                      </div>
-                      <div class="ui labeled button" tabindex="0">
-                        <div (click)="toggle2()" [ngClass]="buttn2">
-                            <i class="fas fa-heart-broken"></i> DisLike 
-                        </div>
-                        <a class="ui basic left pointing black label">
-                            {{dislike}}
-                          </a>
-                      </div><br><br>
-                      <button class="ui right floated basic black button"> <i class="far fa-comment fa-2x "></i></button>
-                    </div>
-                  </div>
+               
+                
             </div>
             
         </div>

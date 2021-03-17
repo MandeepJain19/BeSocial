@@ -22,12 +22,13 @@ export class SignupComponent implements OnInit {
     focus1: any;
     
     
-    constructor(private _route : Router, private _userSignup : UserService) { }
+    constructor(private route : Router, private _userSignup : UserService) { }
 
     ngOnInit() {}
    
     moveToLogin(){
-        this._route.navigate(['login']);
+        this.route.navigate(['login']);
+       
     }
 
     alertClass = "visible";
@@ -51,7 +52,7 @@ close(){
         formData.append('image', this.image)
         this._userSignup.register(formData)
         .subscribe( 
-            data => {console.log(data),this._route.navigate(['login'])},
+            data => {console.log(data),this.route.navigate(['login'])},
             error => {
                     this.httpError = true;
                     this.errorMsg = error.error

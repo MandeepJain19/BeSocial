@@ -1,24 +1,27 @@
-
 import { Component, OnInit } from '@angular/core';
-import { Router,NavigationEnd } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { UserService } from 'app/services/user.service';
-import {Profile} from '../../interfaces/profile' ;
+import {Profile} from '../interfaces/profile'
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-view-profile',
+  templateUrl: './view-profile.component.html',
+  styleUrls: ['./view-profile.component.css']
 })
-export class ProfileComponent implements OnInit {
-  
-  currentuser;
-  usersdata: Profile;
 
-  constructor( private  user: UserService, private route : Router) {
+
+export class ViewProfileComponent implements OnInit {
+  username
+  usersdata
+  constructor(private activatedRoute : ActivatedRoute, private route : Router, private user : UserService) { 
+
+    this.activatedRoute.paramMap.subscribe(params => { 
+      this.username= params.get('username'); 
+  })
     this.route.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd){
           this.user.user().subscribe(
             data =>{ this.currentuser = data
-              this.user.getUser(data)
+              this.user.getUser(this.username)
               .subscribe(
                 (data :Profile) => {
                           this.usersdata = data,
@@ -29,9 +32,13 @@ export class ProfileComponent implements OnInit {
             },
             error => this.route.navigate(['login'])) 
     }})
-   }
 
-  ngOnInit(): void {}
+}
+
+
+  ngOnInit(): void {
+  }
+
   like:number= 5;
   dislike:number=15;
   show :boolean = false;
@@ -41,6 +48,7 @@ export class ProfileComponent implements OnInit {
    buttn2 = "ui black basic button";
    userdata:any[];
    status = false
+   currentuser
    //like
   toggle(id){
     if(!this.click2){
@@ -112,17 +120,26 @@ export class ProfileComponent implements OnInit {
   followersclick : boolean = false
   followingclick : boolean = false
   toogleFollow(){
-    if(this.toogleProp2){
-      if(this.toogleProp){
-        this.toogleProp = false
-        this.followersclick = true
-      }else{
-        this.toogleProp = true
-        this.followersclick = false
+    this.usersdata.followersList.forEach(user => {
+      if(user.username === this.currentuser && this.usersdata.isprivate === true){
+        if(this.toogleProp2){
+          if(this.toogleProp){
+            this.toogleProp = false
+            this.followersclick = true
+          }else{
+            this.toogleProp = true
+            this.followersclick = false
+          }
+        }
       }
-    }
+    });
+   
   }
   toogleFollowing(){
+    this.usersdata.followingList.forEach(user => {
+      if(user.username === this.currentuser && this.usersdata.isprivate === true){
+    
+
     if(this.toogleProp){
       if(this.toogleProp2){
         this.toogleProp2 = false
@@ -133,6 +150,8 @@ export class ProfileComponent implements OnInit {
 
       }
     }
+  }})
   }
+
 
 }

@@ -3,7 +3,7 @@ const Post = require('./post');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 
-let userSchema = new mongoose.Schema({
+var userSchema = new mongoose.Schema({
     name:{type : String, exists: true},
     password: {type : String, exists: true},
     username: {type : String, exists: true, unique: true},
@@ -17,22 +17,36 @@ let userSchema = new mongoose.Schema({
         ref : Post
       }
     ] ,
+    followRequestSent:{type :Array}, // followreq sent to 
     
-    followersCount : Number,
-    followingCount : Number,
-    friendRequest:[{
-      user_id:String,
-      username:String
-}],
-    followersList : [{
-         user_id:String,
-         username : String,
-    }],
-    followingList :  [{
-            user_id:String,
-            username : String,
-    }]
-  
+    followers : {type:Number, default:0},
+    following : {type:Number, default:0},
+    followBackUser:[//user to followback
+      { 
+         type: mongoose.Schema.Types.ObjectId,
+        ref : userSchema
+      }
+    ],
+    followRequest:[//incoming follow req
+      { 
+      type: mongoose.Schema.Types.ObjectId,
+        ref : userSchema
+      }
+    ],
+    followersList : [
+      { 
+        type: mongoose.Schema.Types.ObjectId,
+        ref : userSchema
+      }
+    ],
+    followingList :  [
+      { 
+      type: mongoose.Schema.Types.ObjectId,
+        ref : userSchema
+      }
+    ],
+    bio: {type: String, default: "Configure your own bio..."},
+    profession: {type: String, default: " "},
 })
 
 userSchema.statics.hashPassword = function hashPassword(password){

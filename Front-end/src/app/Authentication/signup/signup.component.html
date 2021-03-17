@@ -60,7 +60,7 @@
                               <div   *ngIf="!username.valid && username.touched"> 
                                 <div class="alert alert-danger" *ngIf="username.errors.required"> Name Required </div>
                                 <div class="alert alert alert-danger"  *ngIf="username.errors.minlength"> Name must be at least 3 character long  </div>
-                                <div class="alert alert-danger" *ngIf="username.errors.pattern"> Alphabets only (no space) </div>
+                                <div class="alert alert-danger" *ngIf="username.errors.pattern"> Space and special character not allowed </div>
                             </div>
                               <label>Password</label>
                               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
@@ -78,7 +78,7 @@
                             </div>
                             
                               <button [disabled]="!signupForm.valid " type="submit" value="submit" class="btn btn-danger btn-block btn-round">Register</button><br>
-                              <div  (click)="moveToLogin()" class="ui right floated circular basic blue button "><a  href="#">Login</a></div>
+                              <div  [routerLink]="['/login']" routerLinkActive="router-link-active"  class="ui right floated circular basic blue button "><a>Login</a></div>
                           </form>
                           
                       </div>
