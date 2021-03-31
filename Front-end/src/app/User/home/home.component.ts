@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { UserService } from 'app/services/user.service';
-
+import {ChatService} from "../../services/chat.service"
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,27 +10,36 @@ import { UserService } from 'app/services/user.service';
 export class HomeComponent implements OnInit {
   
 
-  posts 
-  constructor(private user :UserService,private route: Router) {
+  posts;
+  currentuser;
+  constructor(private user :UserService,private route: Router, private chatservice : ChatService) {
     this.route.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd){
           this.user.dashboard().subscribe(
             data=>{
               console.log(data),
               this.posts = data
+              this.chatservice.initSocket()
             },
-            error=>{}
+            error=>{route.navigate(['login'])}
           )
+
+          this.user.user().subscribe(
+            data=>{ 
+              console.log(data)
+              this.currentuser = data
+              console.log(this.currentuser)
+            },
+
+            error =>{route.navigate(['login'])}
+          )
+          
     }})
    }
-   currentuser
+   
   ngOnInit(): void {
     window.scrollTo(10,0)
-    this.user.user().subscribe(
-      data=>{ this.currentuser = data},
-      error =>{}
-    )
-    console.log(this.currentuser)
+    
     
   }
   like:number= 5;
@@ -46,18 +55,20 @@ export class HomeComponent implements OnInit {
   toggle(id){
     if(!this.click2){
       if(!this.show){
-        this.buttn = "ui red button";
        //s this.like++;
+       this.buttn = "ui red button"
         this.show = true
         this.click1=true
            this.status = true
         console.log(id)
         this.user.likepost(id)
         .subscribe(
-          data=>{  this.user.dashboard().subscribe(
+          data=>{  
+            this.user.dashboard().subscribe(
             data=>{
               console.log(data),
               this.posts = data
+
             },
             error=>{}
           )},
@@ -77,7 +88,12 @@ export class HomeComponent implements OnInit {
   toggle2(id){
     if(!this.click1){
       if(!this.show){
-        this.buttn2 = "ui black button";
+        // this.buttn2 = "ui black button";
+        // this.posts.forEach(post => {
+        //   if(post._id === id){
+        //     post.likes++
+        //   }
+        // });
         //this.dislike++;
         this.show = true
         this.click2=true
@@ -90,7 +106,7 @@ export class HomeComponent implements OnInit {
                 console.log(data),
                 this.posts = data
               },
-              error=>{}
+              error=>{ window.alert(error.message)}
             )
           },
           error=>{console.log(error)}

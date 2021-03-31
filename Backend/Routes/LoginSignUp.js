@@ -41,6 +41,8 @@ router.post("/signup", upload.single('image'), (req,res)=>{
                         filename = req.file.filename
                     }
                     
+                    socket
+
                     let userData = new Users({
                         name: req.body.name,
                         //password: md5(req.body.password),
@@ -189,22 +191,6 @@ router.get("/dashboard",isLoggedin ,(req,res)=>{
                  })
                  console.log(followinguser);
                  
-                //  Users.find({username : followinguser}).populate("post").exec((err,users)=>{
-                //      if(err){
-                //          res.status.send("something went wrong")
-                //      }else{
-                //          if(!user){
-                //             res.status(400).send("something went wrong")
-                //         }else{
-                            
-                //             users.forEach(user=> {
-                //                 posts.push(user.post)
-                //             });
-                //             res.send(posts)
-                //         }
-                //      }
-                //  })
-
                  Post.find({author : followinguser}).sort({'date': -1}).exec((err,post)=>{
                      if(err){
                         res.status(400).send("something went wrong")

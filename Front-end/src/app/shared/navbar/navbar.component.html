@@ -30,8 +30,8 @@
                         <p class="d-lg-none"> Activity</p>
                     </a>
                 </li>
-                <li class="nav-item" [hidden]=!status (click)="log()">
-                    <a class="nav-link" rel="tooltip" title="Chats" data-placement="bottom"  target="_blank">
+                <li class="nav-item" [hidden]=!status >
+                    <a class="nav-link" rel="tooltip" title="Chats" data-placement="bottom"  [routerLink]="['/chat']" routerLinkActive="router-link-active"  target="_blank">
                         <i class="far fa-envelope"></i>
                         <p class="d-lg-none"> Chats</p>
                     </a>
@@ -50,11 +50,11 @@
                 </li>
             
                 <li class="nav-item">
-                    <div class=" input-group" id="search" data-placement="bottom">
+                    <div class=" input-group" id="search" data-placement="bottom" >
                         <div class="ui small icon input">
                             <input type="text" placeholder="Username...">
                             <i class="inverted circular search link icon"></i>
-                          </div>
+                        </div>
                     </div>
                 </li>
                 

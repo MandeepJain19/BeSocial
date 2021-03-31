@@ -148,4 +148,20 @@ logout(){
                     
                   })}
 
+                  chatUser(){
+                    return this.http.get("http://localhost:7860/chat/user",{
+                      observe:'body',
+                      withCredentials:true,
+                      headers:new HttpHeaders().append('Content-Type','application/json')
+                    })}
+
+                    oldChats(sender,receiver){
+      
+                    return this.http.get(`http://localhost:7860/message/${sender}/${receiver}`,{
+                    observe:'body',
+                    withCredentials:true,
+                    headers:new HttpHeaders().append('Content-Type','application/json')
+                      })
+                    }
+
 }

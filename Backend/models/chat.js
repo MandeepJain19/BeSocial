@@ -3,18 +3,12 @@ const User = require('./users')
 
 
 let chatSchema = mongoose.Schema({
-    sender_id : {type : mongoose.Schema.Types.ObjectId,
-                    ref: User,
-                    exists: true
-                },
-    receiver_id : {type : mongoose.Schema.Types.ObjectId,
-                        ref: User,
-                        exists: true
-                  },
-    message : String,
-    dateTime : {type: Date,default: Date.now},
+   sendername : {type : String, required : true},
+   receivername : {type : String, required : true},
+    message : {type : String, required : true},
+    dateTime : {type: Date, default: Date.now},
     status : String,
-    image:[]
+    time : String
 })
 let chat =  mongoose.model("chat", chatSchema)
 module.exports = chat

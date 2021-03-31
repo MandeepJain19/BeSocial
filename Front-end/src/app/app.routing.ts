@@ -20,6 +20,7 @@ import { ActivityComponent } from './User/activity/activity.component';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { EditProfileComponent } from './User/edit-profile/edit-profile.component';
+import { ChatSystemComponent } from './User/chat-system/chat-system.component';
 
 
 
@@ -40,7 +41,8 @@ const routes: Routes =[
     { path: 'chatoutside',component: ChatoutsideComponent},
     { path: 'users', component: FindFriendComponent },
     { path: 'activity', component: ActivityComponent },
-    { path: 'post/:id', component: ViewPostComponent }
+    { path: 'post/:id', component: ViewPostComponent },
+    { path: 'chat', component: ChatSystemComponent }
 
 ];
 

@@ -29,6 +29,9 @@ import { FindFriendComponent } from './User/find-friend/find-friend.component';
 import { ActivityComponent } from './User/activity/activity.component';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { ChatSystemComponent } from './User/chat-system/chat-system.component';
+import { ChatService } from './services/chat.service';
+import { SearchpipePipe } from './User/chat-system/searchpipe.pipe';
 
 
 
@@ -53,6 +56,8 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
     ActivityComponent,
     ViewPostComponent,
     ViewProfileComponent,
+    ChatSystemComponent,
+    SearchpipePipe,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +76,7 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
     
   
   ],
-  providers: [UserService, NavbarComponent, Globals],
+  providers: [UserService, NavbarComponent, Globals, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

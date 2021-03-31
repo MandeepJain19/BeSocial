@@ -24,7 +24,7 @@
                           <hr/>
                         
                           <div class="ui labeled button" tabindex="0">
-                            <div (click)="toggle(post._id)"  [ngClass]="!post.likedBy.indexOf(currentuser) ? 'ui red button' : 'ui red basic button' ">
+                            <div (click)="toggle(post._id)"  [ngClass]="post.likedBy.indexOf(currentuser) == 0  ? 'ui red button' : 'ui red basic button' ">
                                 <i class="far fa-heart"></i> Like
                             </div> 
                             <a class="ui basic red left pointing label">
@@ -32,7 +32,7 @@
                             </a>
                           </div>
                           <div class="ui labeled button" tabindex="0">
-                            <div (click)="toggle2(post._id)" [ngClass]="!post.dislikedBy.indexOf(currentuser) ? 'ui black button' : 'ui black basic button' ">
+                            <div (click)="toggle2(post._id)" [ngClass]="post.dislikedBy.indexOf(currentuser) == 0 ? 'ui black button' : 'ui black basic button' ">
                                 <i class="fas fa-heart-broken"></i> DisLike 
                             </div>
                             <a class="ui basic left pointing black label">
