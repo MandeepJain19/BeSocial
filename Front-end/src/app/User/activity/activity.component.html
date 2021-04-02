@@ -7,6 +7,8 @@
     <br>
     <div *ngIf="currentuser.followRequest">
         <div  class="ui raised very padded text container segment" *ngFor="let user of currentuser.followRequest" >
+            <a class="link" [routerLink]="['/profile', user.username]" routerLinkActive="router-link-active" >
+
             <table >
                 <tr>
                     <td rowspan="2">
@@ -25,6 +27,7 @@
                 </tr>
                 
             </table>
+            </a>
             <div  class="ui right floated" >
                 <button class="ui right floated blue button" (click)="rejectReq(user._id)">Reject</button>
                 <button class="ui right floated blue button" (click)="acceptReq(user._id)" >Accept</button>
@@ -34,6 +37,8 @@
       
 <div *ngIf="currentuser.followBackUser">
     <div  class="ui raised very padded text container segment" *ngFor="let user of currentuser.followBackUser" >
+        <a class="link" [routerLink]="['/profile', user.username]" routerLinkActive="router-link-active" >
+
         <table >
             <tr>
                 <td rowspan="2">
@@ -52,6 +57,7 @@
             </tr>
             
         </table>
+        </a>
         <div  class="ui right floated" >
             <button class="ui right floated blue button" (click)="followBackUser(user._id)">Follow Back</button>
         </div>   

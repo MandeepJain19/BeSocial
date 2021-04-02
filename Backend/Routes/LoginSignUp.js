@@ -24,7 +24,7 @@ let upload = Multer({ storage: storage })
 
 
 router.post("/signup", upload.single('image'), (req,res)=>{
-
+console.log(req.body.email)
     Users.findOne({email: req.body.email }).then((user)=>{
        if(user){
            return res.status(400).send(`An account with the email ${req.body.email} already exists`)
@@ -41,7 +41,7 @@ router.post("/signup", upload.single('image'), (req,res)=>{
                         filename = req.file.filename
                     }
                     
-                    socket
+                    
 
                     let userData = new Users({
                         name: req.body.name,

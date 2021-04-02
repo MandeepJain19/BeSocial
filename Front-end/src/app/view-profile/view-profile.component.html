@@ -23,7 +23,17 @@
             <br/>
         <div class="text-center" >
             <div >
-                <span><button [ngClass]=" followersclick ? 'ui red button' : 'ui basic red button'" (click)="toogleFollow()"><b>{{usersdata.followers}}</b> &nbsp;&nbsp; Followers  </button></span><span><button [ngClass]=" followingclick ? 'ui red button' : 'ui basic red button'" (click)="toogleFollowing()"><b>{{usersdata.following }}</b> &nbsp;&nbsp; Following</button></span>
+                <span><button [ngClass]=" followersclick ? 'ui red button' : 'ui basic red button'" (click)="toogleFollow()"><b>{{usersdata.followers}}</b> &nbsp;&nbsp; Followers  </button></span>
+                <span><button [ngClass]=" followingclick ? 'ui red button' : 'ui basic red button'" (click)="toogleFollowing()"><b>{{usersdata.following }}</b> &nbsp;&nbsp; Followings</button></span>
+                <span> <button class="ui green button" *ngIf="followers.includes(usersdata.username) && following.includes(usersdata.username) "  (click)="follow(usersdata._id)">Following</button></span>
+                <span> <button class="ui blue button" *ngIf="followers.includes(usersdata.username) && !following.includes(usersdata.username)"  (click)="followBackUser(usersdata._id)">FollowBack</button></span>
+                <span> <button class="ui blue button" *ngIf="!followers.includes(usersdata.username) && !following.includes(usersdata.username) && !followReqSent.includes(usersdata.username)"  (click)="follow(usersdata._id)">Follow</button></span>
+                 <span> <button class="ui blue button" *ngIf="followReqSent.includes(usersdata.username)">Requested</button></span>
+                
+            </div>
+            <div *ngIf="followreq.includes(usersdata.username)">
+                <span>   <button class="ui blue button" (click)="acceptReq(usersdata._id)" >Accept</button></span>
+                <span>   <button class="ui blue button" (click)="rejectReq(usersdata._id)">Reject</button></span>
             </div>
             <div [hidden]="toogleProp"><br>
                 <div class="row following" id="follows">
@@ -96,10 +106,13 @@
                 <div class="row" *ngIf="user.username === currentuser && usersdata.isprivate === true">
                     <div class="col sm" *ngFor="let post of usersdata.post">
                         <div class="card" style="width: 310px">
+                            <a [routerLink]="['/post', post._id]" routerLinkActive="router-link-active" >
                             <img class="card-img-top" src="{{'http://localhost:7860/public/posts/'+post.postUrl}}"  height="250"alt="Card image">
+                        </a>
                             <div class="card-body">
                                 <img class="ui  avatar image" src="{{'http://localhost:7860/public/profile image/'+usersdata.img}}">
                                 <span class="card-title"> <b>{{usersdata.name}}</b> </span>
+                           
                             <br><br><p class="card-text"> <i>{{post.caption}}</i></p>
                               <hr/>
 

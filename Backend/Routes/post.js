@@ -5,7 +5,7 @@ const Posts = require('../models/post')
 const Multer = require('multer');
 const path = require('path');
 const Post = require('../models/post');
-
+const Comments = require('../models/comment')
 
 //Multer config
 let storage = Multer.diskStorage({
@@ -39,21 +39,51 @@ router.get("tagpost/:username"), (req,res)=>{
 //get specific post
 router.get("/getpost/:id", (req,res)=>{
     console.log(req.params.id)
-    Post.findOne({_id : req.params.id}, (err,post)=>{
+    Post.findOne({_id : req.params.id}).populate("comment").exec((err,post)=>{
         if(err){
             res.status(400).send({message : "Something went wrong"})
         }else{
             if(!post){
             res.status(400).send({message : "Post not found"})
             }else{
+                
                 res.status(200).json(post)
             }
         }
     })
 });
 
-router.post("/comment/:postid", (req,res)=>{
-    res.send("comment on post")
+router.post("/comment/:postid",isLoggedin,(req,res)=>{
+    
+    Post.findOne({_id : req.params.postid}, (err,post)=>{
+        if(err){
+            res.status(501).send("Post not found") 
+        }else{
+        //   console.log(req.body.comment)
+           let newcomment = new Comments({
+                comment : req.body.comment,
+                author : req.user.username,
+                authorimage : req.user.img
+    
+            })
+
+            Comments.create(newcomment, (err,comment)=>{
+                if(err){
+                    return res.status(400).send(`Something went Wrong try later`)
+                }else{
+                    post.comment.push(comment)
+                    post.save((err, post)=>{
+                        if(err){
+                            return res.status(400).send(`Something went Wrong try later`)
+                        }else{
+                            console.log(post)
+                            return res.status(200).json(post)
+                        }
+                    })
+                }
+            })
+        }
+    })
 })
 router.delete("/comment/:postid/:commentid", (req,res)=>{
     res,send("delete comment")
@@ -96,12 +126,6 @@ router.post("/post/:username",isLoggedin,upload.single("image"),(req,res)=>{
         })
 
     }
-})
-router.put("/post/:postid",(req,res)=>{
-    res.send("update post")
-})
-router.delete("/post/:postid",(req,res)=>{
-    res.send("delete post ")
 })
 
 router.put("/likepost",isLoggedin,(req, res)=>{
@@ -199,9 +223,9 @@ router.put("/dislikepost",isLoggedin,(req, res)=>{
     })
 })
 
-router.get("/dashboard"),isLoggedin,(req,res)=>{
-
-}
+// router.post("/post/:id/comment"),isLoggedin,(req,res)=>{
+//     console.log("got here")
+// }
 
 function isLoggedin(req,res,next){
     if(req.isAuthenticated()) next();

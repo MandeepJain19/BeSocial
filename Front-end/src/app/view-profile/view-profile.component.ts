@@ -12,6 +12,11 @@ import {Profile} from '../interfaces/profile'
 export class ViewProfileComponent implements OnInit {
   username
   usersdata
+  currentUserData
+  followers= [];
+  following = [];
+  followreq = [];
+  followReqSent;
   constructor(private activatedRoute : ActivatedRoute, private route : Router, private user : UserService) { 
 
     this.activatedRoute.paramMap.subscribe(params => { 
@@ -19,13 +24,27 @@ export class ViewProfileComponent implements OnInit {
   })
     this.route.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd){
-          this.user.user().subscribe(
-            data =>{ this.currentuser = data
+          this.user.currentuser().subscribe(
+            data =>{this.currentUserData = data
+               this.currentuser = this.currentUserData.username
+              console.log(this.currentUserData)
+        
+              this.currentUserData.followersList.forEach(follower => {
+                this.followers.push(follower.username)
+              });
+              this.currentUserData.followingList.forEach(following => {
+                this.following.push(following.username)
+              });
+              this.currentUserData.followRequest.forEach(followr => {
+                this.followreq.push(followr.username)
+              });
+              this.followReqSent = this.currentUserData.followRequestSent
+              console.log(this.followreq)
               this.user.getUser(this.username)
               .subscribe(
                 (data :Profile) => {
                           this.usersdata = data,
-                          console.log(data)
+                          console.log(this.usersdata)
                         },
                 error => {this.route.navigate(['login'])}
               )
@@ -153,5 +172,65 @@ export class ViewProfileComponent implements OnInit {
   }})
   }
 
+  follow(followid){
+    // console.log(followid)
+    let user
+     this.user.follow(followid).subscribe(
+       data=>{
+         this.user.currentuser().subscribe(
+           data =>{ console.log(data)
+                    user = data
+             this.followReqSent.push(user.username)
+             this.route.navigate([['/profile', user.username]])
+             window.location.reload()
+           },
+           error => {}
+           ) 
+       },
+       error=>{}
+     )
+   }
 
+   followBackUser(id){
+     let user
+    console.log(id)
+    this.user.followBackUser(id).subscribe(
+     
+     data => {this.user.currentuser().subscribe(
+       data =>{ console.log(data)
+         user= data
+         this.following.push(user.username)
+        //  this.route.navigate(['/profile', this.usersdata.username])
+        window.location.reload()
+       },
+       error => {}
+       ) 
+   },
+   error=>{}
+ )
+}
+
+acceptReq(id){
+  let user
+  this.user.acceptReq(id).subscribe(
+    data=>{
+      this.user.currentuser().subscribe(
+        data =>{
+           console.log(data)
+          user = data
+          this.followers.push(user.username)
+          // this.route.navigate(['/profile', this.usersdata.username])
+          window.location.reload()
+         },
+         error=>{
+
+         })
+    },
+    error=>{}
+  )
+}
+
+rejectReq(id){
+console.log(id)
+}
 }

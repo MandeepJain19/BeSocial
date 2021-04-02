@@ -6,12 +6,12 @@
     <hr>
     <br>
     <div  class="ui raised very padded text container segment" *ngFor="let user of users" >
+        <a class="link" [routerLink]="['/profile', user.username]" routerLinkActive="router-link-active" >
+
         <table >
             <tr>
                 <td rowspan="2">
-                   
-                        <img  class="ui tiny avatar image"src="{{'http://localhost:7860/public/profile image/'+user.img}}" alt="Circle Image" >
-                  
+                    <img  class="ui tiny avatar image"src="{{'http://localhost:7860/public/profile image/'+user.img}}" alt="Circle Image" >
                 </td>
                 <td class="uname">
                     &nbsp;{{user.username}} 
@@ -22,11 +22,9 @@
                   &nbsp;{{user.name}}
                 </td>
             </tr>
-            
         </table>
+        </a>
         <div  class="ui right floated" >
-       
-
         <button class="ui right floated blue button" *ngIf=" currentuser.followRequestSent.indexOf(user.username) === -1"  (click)="follow(user._id)">Follow</button>
         <button class="ui right floated blue button" *ngIf=" currentuser.followRequestSent.indexOf(user.username) != -1">Requested</button>
 

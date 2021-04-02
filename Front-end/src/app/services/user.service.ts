@@ -164,4 +164,14 @@ logout(){
                       })
                     }
 
-}
+                    comment(id,text){
+                      
+                      let comment =  {comment : text}
+                      console.log(comment)
+                      return this.http.post(`http://localhost:7860/comment/${id}`,comment,{
+                        observe:'body',
+                        withCredentials:true,
+                      })}
+                    
+
+                  }

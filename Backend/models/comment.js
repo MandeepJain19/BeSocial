@@ -4,13 +4,11 @@ const User = require('./users');
 
 let commentSchema = mongoose.Schema({
     comment : String,
-    authorDetails :[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref : User
-    }],
+    author :{type :String},
+    authorimage : {type : String},
     date : {type: Date,default: Date.now},
-    likeCount : Number,
-    dislikeCount : Number,
+    likeCount : {type : Number,default : 0 },
+    // dislikeCount : Number,
     likeDetails : [{
         type: mongoose.Schema.Types.ObjectId,
         ref : User
