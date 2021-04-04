@@ -54,5 +54,11 @@ body {
   position:absolute; top: 10px; right: 8px; z-index: 3; 
   /* opacity: 0.9; */
   color: red;
+  cursor: pointer;
  }
-  
+ @media only screen and (max-width: 600px) {
+  .messages-box,
+  .chat-box{
+    height: 400px;
+  }
+ }
