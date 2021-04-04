@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="500" >
+<nav class="navbar navbar-expand-lg fixed-top " color-on-scroll="500" >
     <div class="container" >
         <div class="navbar-translate">
             <a class="navbar-brand" [routerLink]="['/dashboard']" routerLinkActive="router-link-active" >BeSocial</a>
@@ -52,9 +52,27 @@
                 <li class="nav-item">
                     <div class=" input-group" id="search" data-placement="bottom" >
                         <div class="ui small icon input">
-                            <input type="text" placeholder="Username...">
+                            <input type="text" [(ngModel)]="searchText" name="search" placeholder="Username...">
                             <i class="inverted circular search link icon"></i>
                         </div>
+                    </div>
+                    <div class="contacts_body" *ngIf="!searchText == '' "  class="usernameSearch">
+                       <ul class="contacts">
+                        <li  *ngFor="let user of userinfo | username : searchText"  class="" >
+                        
+                            <div (click)="clear()" class="d-flex bd-highlight" [routerLink]="['/profile', user.username]"
+                            routerLinkActive="router-link-active" >
+                                <div class="img_cont">
+                                    <img src="{{'http://localhost:7860/public/profile image/'+user.img}}" class="rounded-circle user_img">
+                                    <span class=""></span>
+                                </div>
+                                <div class="user_info">
+                                    <span>{{user.username}}</span>
+                                    <p>{{user.name}}</p>
+                                </div>
+                            </div>
+                            </li>
+                       </ul>
                     </div>
                 </li>
                 

@@ -33,7 +33,6 @@ export class SignupComponent implements OnInit {
 
     alertClass = "visible";
 close(){
-    console.log(this.alertClass)
    this.alertClass = "invisible"
 }
 
@@ -52,7 +51,7 @@ close(){
         formData.append('image', this.image)
         this._userSignup.register(formData)
         .subscribe( 
-            data => {console.log(data),this.route.navigate(['login'])},
+            data => {this.route.navigate(['login'])},
             error => {
                     this.httpError = true;
                     this.errorMsg = error.error
@@ -61,8 +60,5 @@ close(){
             }
         )
     }
-    
-
-
 
 }

@@ -16,7 +16,6 @@ export class ActivityComponent implements OnInit {
       if (ev instanceof NavigationEnd){
           this.user.currentuser().subscribe(
             data =>{
-               console.log(data)
               this.currentuser = data
              
              },
@@ -33,7 +32,6 @@ export class ActivityComponent implements OnInit {
       data=>{
         this.user.currentuser().subscribe(
           data =>{
-             console.log(data)
             this.currentuser = data
            },
            error=>{
@@ -48,32 +46,30 @@ export class ActivityComponent implements OnInit {
   }
 
   follow(followid){
-    // console.log(followid)
      this.user.follow(followid).subscribe(
        data=>{
          this.user.currentuser().subscribe(
-           data =>{ console.log(data)
+           data =>{ 
              this.currentuser = data
            },
-           error => {}
+           error => {window.alert("something went Wron")}
            ) 
        },
-       error=>{}
+       error=>{window.alert("something went Wron")}
      )
    }
 
    followBackUser(id){
-     console.log(id)
      this.user.followBackUser(id).subscribe(
       
       data => {this.user.currentuser().subscribe(
-        data =>{ console.log(data)
+        data =>{ 
           this.currentuser = data
         },
-        error => {}
+        error => { window.alert("something went Wron")}
         ) 
     },
-    error=>{}
+    error=>{window.alert("something went Wron")}
   )
 }
 

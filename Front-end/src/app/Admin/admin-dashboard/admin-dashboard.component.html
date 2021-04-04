@@ -1,0 +1,546 @@
+
+<header>
+    <!-- Sidebar -->
+    
+    <nav
+         id="sidebarMenu"
+         class="collapse d-lg-block sidebar collapse bg-white"
+         >
+      <div class="position-sticky">
+        <div class="list-group list-group-flush mx-3 mt-4">
+            <a   class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+               
+                <span></span>
+              </a>
+          <a (click)="Dashboard()" class="list-group-item list-group-item-action py-2 ripple " aria-current="true">
+            <i class="fas fa-tachometer-alt fa-fw me-3"></i>
+            <span>Main dashboard</span>
+          </a>
+          <a (click)="userDetails()"  class="list-group-item list-group-item-action py-2 ripple">
+            <i class="fas fa-chart-area fa-fw me-3"></i>
+            <span>Users Details</span>
+          </a>
+          <a (click)="inappropriatePosts()" class="list-group-item list-group-item-action py-2 ripple"
+             ><i class="fas fa-lock fa-fw me-3"></i>
+             <span>Inappropriate Posts</span></a>
+
+          <a (click)="report()" class="list-group-item list-group-item-action py-2 ripple" >
+            <i class="fas fa-chart-line fa-fw me-3"></i>
+            <span>Reports</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <!-- Sidebar -->
+  <br>
+    <!-- Navbar -->
+    <nav
+         id="main-navbar"
+         class="navbar navbar-expand-lg navbar-light bg-white fixed-top"
+         >
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#sidebarMenu"
+                aria-controls="sidebarMenu"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
+          <i class="fas fa-bars"></i>
+        </button>
+  
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">
+        <p style="font-size: large; color: black;"><b>BESOCIAL</b></p>
+        </a>
+        <!-- Search form -->
+         <!-- Right links -->
+        <ul class="navbar-nav ms-auto d-flex flex-row">
+          
+          
+          <!-- Avatar -->
+          <li class="nav-item dropdown">
+            <a
+               class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center"
+               href="#"
+               id="navbarDropdownMenuLink"
+               role="button"
+               data-mdb-toggle="dropdown"
+               aria-expanded="false"
+               >
+              <img
+                   src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
+                   class="rounded-circle"
+                   height="22"
+                   alt=""
+                   loading="lazy"
+                   />
+            </a>
+            <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navbarDropdownMenuLink"
+                >
+              <!-- <li><a class="dropdown-item" href="#">My profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li> -->
+              <li><a class="dropdown-item" href="#">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+  </header>
+  <!--Main Navigation-->
+  
+  <!--Main layout-->
+  <main style="margin-top: 58px">
+    <div class="container pt-4">
+      <!-- Section: Main chart -->
+      <!-- <section class="mb-4">
+        <div class="card">
+          <div class="card-header py-3">
+            <h5 class="mb-0 text-center"><strong>Sales</strong></h5>
+          </div>
+          <div class="card-body">
+            <canvas class="my-4 w-100" id="myChart" height="380"></canvas>
+          </div>
+        </div>
+      </section> -->
+      <!-- Section: Main chart -->
+  
+      <!--Section: Sales Performance KPIs-->
+      <section class="mb-4" *ngIf="userdetails">
+        <div class="card">
+          <div class="card-header text-center py-3">
+            <h5 class="mb-0 text-center">
+              <strong>Users Detail</strong>
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover text-nowrap">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Name</th>
+                    <th scope="col">username</th>
+                    <th scope="col">Followers</th>
+                    <th scope="col">Following</th>
+                    <th scope="col">Posts</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr *ngFor="let user of userdata">
+                    <th scope="row"></th>
+                    <td>{{user.name}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.followers}}</td>
+                    <td>{{user.following}}</td>
+                    <td>{{user.post.length}}</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Section: Sales Performance KPIs-->
+  
+      <!--Section: Minimal statistics cards-->
+
+      <section *ngIf="dashboard">
+        <div class="row">
+            <div class="col-xl-6 col-md-12 mb-4">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between p-md-1">
+                      <div class="d-flex flex-row">
+                        <div class="align-self-center">
+                          <i class="far fa-user text-success fa-3x me-4"></i>
+                        </div>
+                        <div>
+                          <h4>Total Users</h4>
+                          <p class="mb-0">besocial Users</p>
+                        </div>
+                      </div>
+                      <div class="align-self-center">
+                        <h2 class="h1 mb-0">{{userdata.length}}</h2>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <div class="col-xl-6 col-md-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between p-md-1">
+                  <div class="d-flex flex-row">
+                    <div class="align-self-center">
+                      <i class="fas fa-pencil-alt text-info fa-3x me-4"></i>
+                    </div>
+                    <div>
+                      <h4>Total Posts</h4>
+                      <p class="mb-0">users Posts</p>
+                    </div>
+                  </div>
+                  <div class="align-self-center">
+                    <h2 class="h1 mb-0">{{post}}</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="row">
+            <div class="col-xl-6 col-md-12 mb-4">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between p-md-1">
+                      <div class="d-flex flex-row">
+                        <div class="align-self-center">
+                          <i class="far fa-heart text-danger  fa-3x me-4"></i>
+                        </div>
+                        <div>
+                          <h4>Likes on Posts</h4>
+                          <p class="mb-0">Total Likes on Post</p>
+                        </div>
+                      </div>
+                      <div class="align-self-center">
+                        <h2 class="h1 mb-0">{{likes}}</h2>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6 col-md-12 mb-4">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between p-md-1">
+                      <div class="d-flex flex-row">
+                        <div class="align-self-center">
+                          <i class="far fa-heart  fa-3x fa-3x me-4"></i>
+                        </div>
+                        <div> 
+                          <h4>  Dislikes on Posts</h4>
+                          <p class="mb-0">Total Dislikes Likes on Post</p>
+                        </div>
+                      </div>
+                      <div class="align-self-center">
+                        <h2 class="h1 mb-0">{{dislikes}}</h2>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>      
+        </div>
+      </section>
+
+      <!-- <section >
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div class="align-self-center">
+                    <i class="fas fa-pencil-alt text-info fa-3x"></i>
+                  </div>
+                  <div class="text-end">
+                    <h3>278</h3>
+                    <p class="mb-0">New Posts</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div class="align-self-center">
+                    <i class="far fa-comment-alt text-warning fa-3x"></i>
+                  </div>
+                  <div class="text-end">
+                    <h3>156</h3>
+                    <p class="mb-0">New Comments</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div class="align-self-center">
+                    <i class="fas fa-chart-line text-success fa-3x"></i>
+                  </div>
+                  <div class="text-end">
+                    <h3>64.89 %</h3>
+                    <p class="mb-0">Bounce Rate</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div class="align-self-center">
+                    <i class="fas fa-map-marker-alt text-danger fa-3x"></i>
+                  </div>
+                  <div class="text-end">
+                    <h3>423</h3>
+                    <p class="mb-0">Total Visits</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-danger">278</h3>
+                    <p class="mb-0">New Projects</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="fas fa-rocket text-danger fa-3x"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-success">156</h3>
+                    <p class="mb-0">New Clients</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="far fa-user text-success fa-3x"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-warning">64.89 %</h3>
+                    <p class="mb-0">Conversion Rate</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="fas fa-chart-pie text-warning fa-3x"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-info">423</h3>
+                    <p class="mb-0">Support Tickets</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="far fa-life-ring text-info fa-3x"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-info">278</h3>
+                    <p class="mb-0">New Posts</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="fas fa-book-open text-info fa-3x"></i>
+                  </div>
+                </div>
+                <div class="px-md-1">
+                  <div class="progress mt-3 mb-1 rounded" style="height: 7px">
+                    <div
+                         class="progress-bar bg-info"
+                         role="progressbar"
+                         style="width: 80%"
+                         aria-valuenow="80"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-warning">156</h3>
+                    <p class="mb-0">New Comments</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="far fa-comments text-warning fa-3x"></i>
+                  </div>
+                </div>
+                <div class="px-md-1">
+                  <div class="progress mt-3 mb-1 rounded" style="height: 7px">
+                    <div
+                         class="progress-bar bg-warning"
+                         role="progressbar"
+                         style="width: 35%"
+                         aria-valuenow="35"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-success">64.89 %</h3>
+                    <p class="mb-0">Bounce Rate</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="fas fa-mug-hot text-success fa-3x"></i>
+                  </div>
+                </div>
+                <div class="px-md-1">
+                  <div class="progress mt-3 mb-1 rounded" style="height: 7px">
+                    <div
+                         class="progress-bar bg-success"
+                         role="progressbar"
+                         style="width: 60%"
+                         aria-valuenow="60"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-danger">423</h3>
+                    <p class="mb-0">Total Visits</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="fas fa-map-signs text-danger fa-3x"></i>
+                  </div>
+                </div>
+                <div class="px-md-1">
+                  <div class="progress mt-3 mb-1 rounded" style="height: 7px">
+                    <div
+                         class="progress-bar bg-danger"
+                         role="progressbar"
+                         style="width: 40%"
+                         aria-valuenow="40"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> -->
+      <!--Section: Minimal statistics cards-->
+  
+      <!--Section: Statistics with subtitles-->
+     
+      <section *ngIf="reports" >
+        <div class="row">
+          <div class="col-xl-6 col-md-12 mb-4">
+            <iframe style="background: #21313C;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="540" height="480" src="https://charts.mongodb.com/charts-besocial-aphtu/embed/charts?id=31af9712-e70a-4f51-9854-b4cddca81c2a&theme=dark"></iframe>          </div>
+          <div class="col-xl-6 col-md-12 mb-4">
+            <iframe style="background: #21313C;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="540" height="480" src="https://charts.mongodb.com/charts-besocial-aphtu/embed/charts?id=c77f97e1-1a17-463e-bed5-6d616cb66aa8&theme=dark"></iframe>          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-md-12 mb-4">
+            <iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="540" height="480" src="https://charts.mongodb.com/charts-besocial-aphtu/embed/charts?id=02195025-dcec-49f4-a7af-e8e769004f67&theme=light"></iframe>
+          </div>
+          <div class="col-xl-6 col-md-12 mb-4">
+            <iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="540" height="480" src="https://charts.mongodb.com/charts-besocial-aphtu/embed/charts?id=d31de07a-da63-4fe8-ba0d-dad649b77045&theme=light"></iframe>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-md-12 mb-4">
+            <iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="540" height="480" src="https://charts.mongodb.com/charts-besocial-aphtu/embed/charts?id=f7cec4a3-8c68-431f-bbff-5f98d705d473&theme=light"></iframe>          </div>
+          <div class="col-xl-6 col-md-12 mb-4">
+            <iframe style="background: #21313C;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="540" height="480" src="https://charts.mongodb.com/charts-besocial-aphtu/embed/charts?id=de0c8507-b92f-4ce6-bd6c-f5a21dbd0236&theme=dark"></iframe>          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-md-12 mb-4">
+            <iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="540" height="480" src="https://charts.mongodb.com/charts-besocial-aphtu/embed/charts?id=3fee4103-bf7b-4f92-b2bb-6a2a4c034bde&theme=light"></iframe>
+            <div class="col-xl-6 col-md-12 mb-4">
+
+          </div>
+        </div>
+        </div>
+      </section>
+     
+      <!--Section: Statistics with subtitles-->
+
+      <div class="container" ngif="inpost"> 
+        <div class="row">
+            <div class="col sm" *ngFor="let post of reported">
+                    <div class="card" style="width: 310px" >
+                        <a [routerLink]="['/post', post._id]" routerLinkActive="router-link-active" >
+
+                        <img class="card-img-top" src="{{'http://localhost:7860/public/posts/'+post.postUrl}}"   height="250"alt="Card image">
+                        </a>
+                        <div class="card-body">
+                            <a [routerLink]="['/profile', post.author]" routerLinkActive="router-link-active" >
+                                <img class="ui avatar image"  src="{{'http://localhost:7860/public/profile image/'+post.authorimage}}">
+                                <span class="card-title"> <b>{{post.author}}</b> </span>
+                            </a>
+                            
+                        <br><br><p class="card-text"><i>{{post.caption}}</i></p>
+                          <hr/>
+                        
+                          <button (click)=deletePost(post._id) class="ui right floated basic black button"> <i class="fas fa-trash fa-2x "></i></button>
+                        </div>
+                      </div>
+               
+                
+            </div>
+            
+        </div>
+    </div>
+    </div>
+  </main>
+ 

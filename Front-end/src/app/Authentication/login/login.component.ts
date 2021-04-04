@@ -23,7 +23,6 @@ ngOnInit(): void {
 
 alertClass = "visible";
 close(){
-    console.log(this.alertClass)
    this.alertClass = "invisible"
 }
 x:boolean
@@ -36,7 +35,6 @@ onClickSubmit(data){
         this.route.navigate(['dashboard'])
       },
      error => {
-       console.log(error.message)
       this.httpError = true;
       this.errorMsg = error.error.message
       this.errorType = 'danger'
@@ -44,7 +42,4 @@ onClickSubmit(data){
      }
    )
 }
-
-
-
 }

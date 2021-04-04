@@ -3,6 +3,7 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 import { UserService } from 'app/services/user.service';
 import { Router,NavigationEnd } from '@angular/router';
 import { error } from 'protractor';
+import { AdminService } from 'app/services/admin.service';
 
 @Component({
     selector: 'app-navbar',
@@ -14,16 +15,22 @@ export class NavbarComponent implements OnInit {
    currentUser ={}
     private toggleButton: any;
     private sidebarVisible: boolean;
-
-    constructor(public location: Location, private element : ElementRef, public user : UserService, public route: Router) {
+    userinfo;
+    searchText = ""
+    constructor(public location: Location, private element : ElementRef, public users : UserService, public route: Router, private alluser : AdminService) {
         this.sidebarVisible = false;
-       console.log(status)
        this.route.events.subscribe((ev) => {
         if (ev instanceof NavigationEnd){
 
-            user.navuser().subscribe(
+            users.navuser().subscribe(
                 data=>{this.currentUser= data,this.status = true},
                 error=>{}
+            )
+
+            alluser.allusers().subscribe(
+                data=>{
+                    this.userinfo = data
+                }
             )
         }})
     }
@@ -38,8 +45,7 @@ export class NavbarComponent implements OnInit {
     sidebarOpen() {
         const toggleButton = this.toggleButton;
         const html = document.getElementsByTagName('html')[0];
-        // console.log(html);
-        // console.log(toggleButton, 'toggle');
+    
 
         setTimeout(function(){
             toggleButton.classList.add('toggled');
@@ -50,7 +56,6 @@ export class NavbarComponent implements OnInit {
     };
     sidebarClose() {
         const html = document.getElementsByTagName('html')[0];
-        // console.log(html);
         this.toggleButton.classList.remove('toggled');
         this.sidebarVisible = false;
         html.classList.remove('nav-open');
@@ -77,14 +82,17 @@ export class NavbarComponent implements OnInit {
         }
     }
     call(){
-        console.log('called')
     }
     logout(){
-        this.user.logout()
+        this.users.logout()
         .subscribe(
             data=> { this.status=false, this.route.navigate(['login'])},
             error=> {this.status=false, this.route.navigate(['login'])}
         )
         
     }
+    clear(){
+        this.searchText =' '
+    }
+
 }

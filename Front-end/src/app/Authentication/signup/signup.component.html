@@ -69,7 +69,7 @@
                                       <i class="nc-icon nc-key-25"></i>
                                   </span>
                                 </div>
-                                  <input required  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" ngModel name="password" #password="ngModel" type="text" class="form-control" placeholder="Password" (focus)="focus1=true" (blur)="focus1=false" >
+                                  <input required  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" ngModel name="password" #password="ngModel" type="password" class="form-control" placeholder="Password" (focus)="focus1=true" (blur)="focus1=false" >
                               </div>
                                <div   *ngIf="!password.valid && password.touched">
                                 <div class="alert alert-danger" *ngIf="!password.valid">Enter valid Password</div>

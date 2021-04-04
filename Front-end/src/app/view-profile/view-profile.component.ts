@@ -58,6 +58,46 @@ export class ViewProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  likepost(id){
+    this.user.likepost(id).subscribe(
+      data=> {
+        this.user.getUser(this.username)
+        .subscribe(
+          (data :Profile) => {
+                    this.usersdata = data,
+                    console.log(data)
+                  },
+          error => {this.route.navigate(['login'])}
+        )
+      },
+      error =>{
+          console.log(error)
+          window.alert(error.error.message)
+      })
+  }
+  dislikepost(id){
+    this.user.dislikepost(id).subscribe(
+      data=> {
+        this.user.getUser(this.username)
+        .subscribe(
+          (data :Profile) => {
+                    this.usersdata = data,
+                    console.log(data)
+                  },
+          error => {this.route.navigate(['login'])}
+        )
+          },
+      error =>{
+          console.log(error)
+          window.alert(error.error.message)
+      })
+  }
+
+
+
+
+
+  
   like:number= 5;
   dislike:number=15;
   show :boolean = false;

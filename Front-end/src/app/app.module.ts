@@ -32,6 +32,10 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { ChatSystemComponent } from './User/chat-system/chat-system.component';
 import { ChatService } from './services/chat.service';
 import { SearchpipePipe } from './User/chat-system/searchpipe.pipe';
+import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard.component';
+import { AdminService } from './services/admin.service';
+import { UsernamePipe } from './shared/navbar/username.pipe';
+import { AdminLoginComponent } from './Admin/admin-login/admin-login.component';
 
 
 
@@ -58,6 +62,9 @@ import { SearchpipePipe } from './User/chat-system/searchpipe.pipe';
     ViewProfileComponent,
     ChatSystemComponent,
     SearchpipePipe,
+    AdminDashboardComponent,
+    UsernamePipe,
+    AdminLoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +83,7 @@ import { SearchpipePipe } from './User/chat-system/searchpipe.pipe';
     
   
   ],
-  providers: [UserService, NavbarComponent, Globals, ChatService],
+  providers: [UserService, NavbarComponent, Globals, ChatService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

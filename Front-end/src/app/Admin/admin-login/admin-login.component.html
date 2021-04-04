@@ -1,12 +1,12 @@
 <div class="wrapper">
-    <div class="page-header" style="background-image: url('https://i.redd.it/o8dlfk93azs31.jpg');">
+    <div class="page-header" style="background-image: url('./assets/img/login-image.jpg');">
         <div class="filter"></div>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
                       <div class="card card-register">
 
-                          <h3 class="title">Welcome Back</h3>
+                          <h3 class="title">Admin Login</h3>
                          
                           <form class="register-form"   #loginform="ngForm" (ngSubmit) = onClickSubmit(loginform.value)>
                               <label>Email</label>
@@ -28,7 +28,7 @@
                                       <i class="nc-icon nc-key-25"></i>
                                   </span>
                                 </div>
-                                  <input required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  ngModel name="password" #password="ngModel" type="password" class="form-control" placeholder="Password" (focus)="focus1=true" (blur)="focus1=false" >
+                                  <input required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  ngModel name="password" #password="ngModel" type="text" class="form-control" placeholder="Password" (focus)="focus1=true" (blur)="focus1=false" >
                               </div>
                               <div   *ngIf="!password.valid && password.touched">
                                 <div class="alert alert-danger" *ngIf="!password.valid">Enter valid Password</div>

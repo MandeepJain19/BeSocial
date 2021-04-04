@@ -24,7 +24,7 @@ let upload = Multer({ storage: storage })
 
 
 router.post("/signup", upload.single('image'), (req,res)=>{
-console.log(req.body.email)
+
     Users.findOne({email: req.body.email }).then((user)=>{
        if(user){
            return res.status(400).send(`An account with the email ${req.body.email} already exists`)
@@ -36,7 +36,7 @@ console.log(req.body.email)
                     const file = req.file
                     let filename;
                     if(!file){
-                        filename = "NULL"
+                        filename = 'avtar.png'
                     }else{
                         filename = req.file.filename
                     }
@@ -71,9 +71,7 @@ console.log(req.body.email)
 })
 
 router.post("/login", (req,res,next)=>{
-    console.log (req.body.email)
-    console.log(req.body.password)
-
+   
     passport.authenticate('local', function(err, user, info) {
         if (err) { return res.status(501).send(err); }
         if (!user) { return res.status(501).send(info); }
@@ -83,22 +81,6 @@ router.post("/login", (req,res,next)=>{
         });
       })(req, res, next);
 
-    /*Users.findOne({email: req.body.email}).then((user)=>{
-        //console.log(user)
-        if(user){
-            console.log(md5(user.password))
-            console.log(md5(user.password))
-             /*if( md5(user.password) === req.body.password ){
-                return res.status(201).send(`User Found`)
-            }else{
-                return res.status(400).send(`Password is wrong`)
-            }
-        }else{
-            console.log("not found")
-           return res.status(400).send(`Email ${req.body.email} not found register first`)
-
-        }
-    })*/
 })
 //profile data 
 router.get("/user",isLoggedin, (req,res)=>{
@@ -116,11 +98,11 @@ router.get("/logout",isLoggedin,(req,res)=>{
 })
 
 router.get("/currentuser",isLoggedin,(req,res)=>{
-    console.log(req.user._id);
+   
     
     Users.findOne({_id : req.user._id}).populate("followRequest").populate("followingList").populate("followersList").populate("followBackUser").exec((err,user)=>{
         if(err){
-            console.log(err)
+         
             return res.status(500).json("something went wrong")
         }else{
             if(!user){
@@ -141,7 +123,7 @@ router.get("/newpassword/:username", (req,res)=>{
 
 //find friends
 router.get("/allusers",isLoggedin, (req,res)=>{
-    console.log(req.user._id)
+  
     followinguser = [];
     Users.findOne({_id: req.user._id}).populate('followersList', 'username').populate('followingList', 'username').exec((err,curruser)=>{
         if(err){
@@ -161,11 +143,8 @@ router.get("/allusers",isLoggedin, (req,res)=>{
             followinguser.push(req.user.username)
             Users.find( { username: { $nin: followinguser } }).exec((err, users)=>{
                 if(err){
-                    console.log("error")
                     return res.status(500).json("No user availabe")
                 }else{
-                    console.log("users aree----")
-                    console.log(users)
                     return res.status(200).json(users)
                 }
             })
@@ -189,7 +168,6 @@ router.get("/dashboard",isLoggedin ,(req,res)=>{
                    user.followingList.forEach(user=> {
                     followinguser.push(user.username)
                  })
-                 console.log(followinguser);
                  
                  Post.find({author : followinguser}).sort({'date': -1}).exec((err,post)=>{
                      if(err){

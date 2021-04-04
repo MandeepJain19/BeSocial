@@ -21,6 +21,7 @@ import { ViewPostComponent } from './view-post/view-post.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { EditProfileComponent } from './User/edit-profile/edit-profile.component';
 import { ChatSystemComponent } from './User/chat-system/chat-system.component';
+import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard.component';
 
 
 
@@ -42,7 +43,8 @@ const routes: Routes =[
     { path: 'users', component: FindFriendComponent },
     { path: 'activity', component: ActivityComponent },
     { path: 'post/:id', component: ViewPostComponent },
-    { path: 'chat', component: ChatSystemComponent }
+    { path: 'chat', component: ChatSystemComponent },
+    { path: 'dashboard/admin', component: AdminDashboardComponent },
 
 ];
 

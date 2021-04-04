@@ -21,7 +21,6 @@ export class ViewPostComponent implements OnInit {
       this.user.currentuser().subscribe(
         data => {
           this.currentUser = data
-          console.log(data)
         }
       )
 
@@ -30,15 +29,14 @@ export class ViewPostComponent implements OnInit {
             this.post = data
             console.log(data)
             this.commentList = this.post.comment
-            console.log(this.commentList)
         },
-        error => {}
+        error => {window.alert("something went wrong")}
       )
   });
    }
 
   ngOnInit(): void {
-    window.scrollTo(100,0)
+    // window.scrollTo(100,0)
   }
 
   comment(id){
@@ -56,6 +54,15 @@ export class ViewPostComponent implements OnInit {
                 this.commentmsg = " "
         })
     }
+  }
+
+  report(id){
+    console.log(id)
+    this.user.report(id).subscribe(
+      data=>{
+        window.alert("reported")
+      }
+    )
   }
 
 }

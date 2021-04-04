@@ -37,7 +37,7 @@
             </div>
             <div [hidden]="toogleProp"><br>
                 <div class="row following" id="follows">
-                    <div class="col-md-6 ml-auto mr-auto" style="overflow: auto; overflow-y: scroll">
+                    <div class="col-md-6 ml-auto mr-auto" style="height:330px; overflow: auto; overflow-y: scroll">
                         <ul class="list-unstyled follows">
                             <li *ngFor="let user of usersdata.followersList">
                                 <div class="row" style="vertical-align: center;">
@@ -69,7 +69,7 @@
             </div>
             <div  [hidden]="toogleProp2"><br>
                 <div class="row following" id="follows">
-                    <div class="col-md-6 ml-auto mr-auto" style="overflow: auto; overflow-y: scroll">
+                    <div class="col-md-6 ml-auto mr-auto" style="height:330px; overflow: auto; overflow-y: scroll">
                         <ul class="list-unstyled follows">
                             <li *ngFor="let user of usersdata.followingList">
                                 <div class="row" style="vertical-align: center;">
@@ -116,17 +116,22 @@
                             <br><br><p class="card-text"> <i>{{post.caption}}</i></p>
                               <hr/>
 
-                              <div class="ui labeled button"   tabindex="0">
-                                <div    (click)= "toggle(post._id)"  [ngClass]="!post.likedBy.indexOf(usersdata.username) ? 'ui red button' : 'ui red basic button' ">
+                              <div (click)="likepost(post._id)" class="ui labeled button" tabindex="0">
+                                <div   class="ui red button" *ngIf="post.likedBy.indexOf(currentuser) > -1">
                                     <i class="far fa-heart"></i> Like
                                 </div> 
-                                <a  class="ui basic red left pointing label">
-                                  {{post.likes}}
+                                <div   class="ui red basic button" *ngIf="post.likedBy.indexOf(currentuser) === -1">
+                                    <i class="far fa-heart"></i> Like
+                                </div>
+                                <a class="ui basic red left pointing label">
+                                 {{post.likes}}
                                 </a>
                               </div>
-                             
-                              <div class="ui labeled button" tabindex="0">
-                                <div (click)="toggle2(post._id)" [ngClass]="!post.dislikedBy.indexOf(usersdata.username) ? 'ui black button' : 'ui black basic button' ">
+                              <div (click)="dislikepost(post._id)" class="ui labeled button" tabindex="0">
+                                <div  class="ui black button" *ngIf="post.dislikedBy.indexOf(currentuser) > -1">
+                                    <i class="fas fa-heart-broken"></i> DisLike 
+                                </div>
+                                <div  class="ui black basic button" *ngIf="post.dislikedBy.indexOf(currentuser) === -1">
                                     <i class="fas fa-heart-broken"></i> DisLike 
                                 </div>
                                 <a class="ui basic left pointing black label">

@@ -42,7 +42,6 @@ user(){
 
 //user profile data 
 getUser(username){
-  console.log(username)
   return this.http.get(`http://localhost:7860/profile/${username}`,{
     observe:'body',
     withCredentials:true,
@@ -76,14 +75,18 @@ logout(){
     const postdata =  {id : id}
     return this.http.put(`http://localhost:7860/likepost`,postdata,{
       observe:'body',
-      withCredentials:true
+      withCredentials:true,
+      headers:new HttpHeaders().append('Content-Type','application/json')
+
     })}
 
     dislikepost(id){
       const postdata =  {id : id}
       return this.http.put(`http://localhost:7860/dislikepost`,postdata,{
         observe:'body',
-        withCredentials:true
+        withCredentials:true,
+        headers:new HttpHeaders().append('Content-Type','application/json')
+
       })}
 
       //find friends
@@ -95,7 +98,6 @@ logout(){
         })}
 
         follow(id){
-          //console.log("follow")
           const follow =  {id : id}
           return this.http.put(`http://localhost:7860/follow`,follow,{
             observe:'body',
@@ -167,11 +169,22 @@ logout(){
                     comment(id,text){
                       
                       let comment =  {comment : text}
-                      console.log(comment)
                       return this.http.post(`http://localhost:7860/comment/${id}`,comment,{
                         observe:'body',
                         withCredentials:true,
                       })}
                     
+                      report(id){
+                        const report =  {id : id}
+                        return this.http.put(`http://localhost:7860/post/report/`,report,{
+                          observe:'body',
+                          withCredentials:true,
+                          headers:new HttpHeaders().append('Content-Type','application/json')
+                        })}
+
+                      delete(id){
+                        return  this.http.delete(`http://localhost:7860/post/delete/${id}`)
+                      }
+                        
 
                   }

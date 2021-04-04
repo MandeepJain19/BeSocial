@@ -5,7 +5,6 @@ const Chat = require('../models/chat')
 
 router.get("/chat/user",isLoggedin, (req,res)=>{
 
-    console.log(req.user.username)
     User.findOne({username : req.user.username}).populate("followingList").populate("followersList").exec((err,user)=>{
         if(err){
             return res.status(400).send("User not found")
@@ -22,8 +21,6 @@ router.get("/chat/user",isLoggedin, (req,res)=>{
 })
 
 router.get("/message/:sender/:receiver",(req,res)=>{
-console.log("sender"+req.params.sender)
-console.log("receiver"+req.params.receiver)
     // Chat.find({sendername : req.params.sender || req.params.receiver , receivername: req.params.sender || req.params.receiver }).sort({dateTime : 1}).exec((err,chats)=>{
         Chat.find({
             $or: [
@@ -32,7 +29,6 @@ console.log("receiver"+req.params.receiver)
     if(err){
             res.status(400).send("no chat Found")
         }else{
-            console.log(chats)
             res.status(200).json(chats)
 
         }

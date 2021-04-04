@@ -20,12 +20,10 @@ router.get("/profile/:username",isLoggedin,(req,res)=>{
     
     Users.findOne({username: req.params.username}).populate("post").populate("followingList").populate("followersList").exec((err,user)=>{
         if(user){
-            //console.log(user)
-            console.log("call")
-            console.log(user)
+            
             return res.status(200).json(user)
         }else{
-            console.log(err)
+           
             return res.status(400).send('Something went wrong')
         }
     })
@@ -45,7 +43,6 @@ router.put("/profile/edit/:username",(req,res)=>{
                     if(err){
                         return res.status(400).send('Something went wrong')
                     }else{
-                        console.log("done")
                         return res.status(200).send(user)
                     }
                 })

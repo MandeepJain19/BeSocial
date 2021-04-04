@@ -32,16 +32,16 @@ export class AppComponent implements OnInit {
             }
             this.navbar.sidebarClose();
         });
-        this.renderer.listen('window', 'scroll', (event) => {
-            const number = window.scrollY;
-            if (number > 150 || window.pageYOffset > 150) {
-                // add logic
-                navbar.classList.remove('navbar-transparent');
-            } else {
-                // remove logic
-                navbar.classList.add('navbar-transparent');
-            }
-        });
+        // this.renderer.listen('window', 'scroll', (event) => {
+        //     const number = window.scrollY;
+        //     if (number > 150 || window.pageYOffset > 150) {
+        //         // add logic
+        //         navbar.classList.remove('navbar-transparent');
+        //     } else {
+        //         // remove logic
+        //         navbar.classList.add('navbar-transparent');
+        //     }
+        // });
         var ua = window.navigator.userAgent;
         var trident = ua.indexOf('Trident/');
         if (trident > 0) {
@@ -63,6 +63,16 @@ export class AppComponent implements OnInit {
         var titlee = this.location.prepareExternalUrl(this.location.path());
         titlee = titlee.slice( 1 );
         if(titlee === 'signup' || titlee === 'nucleoicons'){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    removeNavbar() {
+        var titlee = this.location.prepareExternalUrl(this.location.path());
+        titlee = titlee.slice( 1 );
+        if(titlee === 'signup' || titlee === 'dashboard/admin'){
             return false;
         }
         else {

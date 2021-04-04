@@ -51,7 +51,7 @@ export class UploadpostComponent implements OnInit {
    //close alert flash 
 alertClass = "visible";
 close(){
-    console.log(this.alertClass)
+   
    this.alertClass = "invisible"
 }
 
@@ -62,10 +62,9 @@ close(){
     }
     formData.append('image', this.image)
     
-    console.log(this.usersdata.username)
     this.user.addpost(formData,this.usersdata.username).subscribe(
-     data=> {console.log(data),this.route.navigate(['profile'])},
-     error=>{console.log(error)
+     data=> {this.route.navigate(['profile'])},
+     error=>{
        this.httpError = true;
       this.errorMsg = error.error
       this.errorType = 'danger'

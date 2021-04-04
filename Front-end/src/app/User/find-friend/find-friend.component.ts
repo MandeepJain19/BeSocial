@@ -19,18 +19,18 @@ export class FindFriendComponent implements OnInit {
     this.route.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd){
           this.user.currentuser().subscribe(
-            data =>{ console.log(data)
+            data =>{ 
               this.currentuser = data
               user.getallusers().subscribe(
                 (data: Profile) =>{
                   this.users = data
-                  console.log(data)},
-                error=>{console.log(error)}
+                  },
+                error=>{window.alert("something went Wrong")}
               )
             },
             error => this.route.navigate(['login'])) 
     }})
- console.log(this.currentuser)
+
 
 
 
@@ -39,11 +39,11 @@ export class FindFriendComponent implements OnInit {
   }
 
   follow(followid){
-   // console.log(followid)
+ 
     this.user.follow(followid).subscribe(
       data=>{
         this.user.currentuser().subscribe(
-          data =>{ console.log(data)
+          data =>{ 
             this.currentuser = data
           },
           error => {}

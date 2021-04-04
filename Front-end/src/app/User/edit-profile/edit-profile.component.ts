@@ -17,7 +17,7 @@ usersdata;
   this.user.getUser(this.username).subscribe(
     data => { 
       this.usersdata = data
-      console.log(this.usersdata)
+  
     },
     error =>{ route.navigate(['profile'])}
   )
@@ -29,11 +29,11 @@ usersdata;
 
 
   update(data){
-    console.log(data)
+  
    
     this.user.updateProfile(data,this.usersdata.username).subscribe(
       data => {
-        console.log(data)
+    
         this.route.navigate(['profile'])
       },
       error => {

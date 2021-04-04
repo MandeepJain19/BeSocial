@@ -1,10 +1,4 @@
-/*
-*
-* ==========================================
-* FOR DEMO PURPOSES
-* ==========================================
-*
-*/
+
 .wrapper{
     background-image: radial-gradient(circle, #646669, #87888a, #ababad, #d0d0d1, #f6f6f6);
 }
@@ -56,4 +50,9 @@ body {
       width: 100%;
   }
   
+ #report{
+  position:absolute; top: 10px; right: 8px; z-index: 3; 
+  /* opacity: 0.9; */
+  color: red;
+ }
   

@@ -14,7 +14,6 @@ export class ChatService {
   constructor() { }
 
   initSocket(){
-    console.log("call")
     this.socket = io('http://localhost:7860', { transports : ['websocket'] })
   }
 
@@ -24,7 +23,6 @@ export class ChatService {
 
   
   getMessage(){
-    console.log("works")
     
     return new Observable((observer)=>{
       this.socket.on('onServerMsg', (msg: unknown)=>{
@@ -39,7 +37,6 @@ export class ChatService {
     return new Observable((observer)=>{
       this.socket.on('onlineUsers', (userList)=>{
         observer.next(userList)
-        console.log(userList)
       })
     })
   }
@@ -53,7 +50,6 @@ export class ChatService {
 //  return observable
 //  }
   join(username: any){
-    console.log(username)
     this.socket.emit('join',{username : username})
   }
 

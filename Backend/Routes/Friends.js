@@ -24,7 +24,6 @@ router.put("/confirmreq",isLoggedin, (req,res)=>{
     User.findOne({_id : req.body.id},(err,followuser)=>{
 
         if(err){
-            console.log(error)
             return res.status(400).json({message : "Something went wrong"})
         }else{
             if(!followuser){
@@ -70,7 +69,6 @@ router.put("/follow",isLoggedin,(req,res)=>{
 
  User.findOne({_id : req.body.id},(err,followuser)=>{
     if(err){
-        console.log(error)
         return res.status(400).json({message : "Something went wrong"})
     }else{
         if(!followuser){
@@ -81,7 +79,6 @@ router.put("/follow",isLoggedin,(req,res)=>{
                 if(err){
                     return res.status(401).json("Something went wrong")
                 }else{
-                   console.log(followuser.username)
                     user.followRequestSent.push(followuser.username)
                     followuser.followRequest.push(req.user._id)
                     user.save((err)=>{
@@ -111,11 +108,9 @@ router.put("/follow",isLoggedin,(req,res)=>{
 
 router.put("/followBackUser",isLoggedin,(req,res)=>{
    
-    console.log(req.body.id)
     User.findOne({_id : req.body.id},(err,followbackuser)=>{
 
         if(err){
-            console.log(error)
             return res.status(400).json({message : "Something went wrong"})
         }else{
             if(!followbackuser){
@@ -126,7 +121,6 @@ router.put("/followBackUser",isLoggedin,(req,res)=>{
                     if(err){
                         return res.status(401).json("Something went wrong")
                     }else{
-                        console.log("user")
                         user.followingList.push(followbackuser._id);
                         user.following++;
                         user.followBackUser.pull(followbackuser._id)
@@ -134,7 +128,6 @@ router.put("/followBackUser",isLoggedin,(req,res)=>{
                             if(err){
                                 return res.status(401).json("Something went wrong")
                             }else{
-                                console.log("followuser")
                                 followbackuser.followersList.push(user._id);
                                 followbackuser.followers++;
                                 followbackuser.save((err)=>{

@@ -12,6 +12,7 @@ const loginSignupRoutes = require('./Routes/LoginSignUp')
 const profileRoutes = require('./Routes/profile')
 const postRoutes = require('./Routes/post')
 const chatsRoutes = require('./Routes/chats')
+const adminRoutes = require('./Routes/admin')
 const bodyParser = require("body-parser");//use for get data from form
 const md5 = require('md5');
 const cors = require('cors')
@@ -30,13 +31,12 @@ app.set('socketio', io);
 
 let userList = []
 io.on('connection', (socket) =>{
-  console.log("connected")
-  console.log(socket.name)
+ 
 
   
 
   socket.on('join', (username)=>{
-    console.log(username.username)
+    
     socket.join(username.username);
     userList.push(username.username)
     io.emit('onlineUsers',userList)
@@ -44,7 +44,7 @@ io.on('connection', (socket) =>{
 
   //incoming message
   socket.on('onClientMsg', (msg)=>{
-    console.log(msg)
+    
 
    let chat = new Chat({
       sendername : msg.from,
@@ -56,16 +56,14 @@ io.on('connection', (socket) =>{
       if(err){
     console.log(err)
       }else{
-        console.log(data)
+        
         io.sockets.in(msg.from).emit('onServerMsg',chat)
       }
     })
     
     //socket.broadcast.emit('onServerMsg', msg.msg)
      //socket.broadcast.to(msg.to).emit('onServerMsg', msg)
-    })
-    console.log(userList)
-    
+    })  
   })
 
 
@@ -100,12 +98,11 @@ app.use(session({
 require('./passport-config');
 app.use(passport.initialize());
 app.use(passport.session());
-//router.use(passport.initialize)
-//console.log(md5("Hello"))
 
 
 
-app.use('/',loginSignupRoutes,friendsRoutes,profileRoutes,postRoutes,chatsRoutes)
+
+app.use('/',loginSignupRoutes,friendsRoutes,profileRoutes,postRoutes,chatsRoutes,adminRoutes)
 
 
 

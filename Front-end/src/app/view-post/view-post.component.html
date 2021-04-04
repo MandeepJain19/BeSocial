@@ -1,20 +1,13 @@
-<div class="wrapper" >
-    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/fabio-mangione.jpg');">
-        <div class="filter"></div>
-    </div>
-    <br><br><br><br>
-<div class="container py-5 px-4">
-    
-  
-    <div class="row rounded-lg overflow-hidden shadow">
+
+    <br><br><br>
+<div class="container py-5 px-4" *ngIf="post">
+    <div id="component" class="row rounded-lg overflow-hidden shadow">
       <!-- Users box-->
       <div class="col-5 px-0">
         <div class="bg-white">
-  
           <div class="bg-gray px-4 py-2 bg-light">
             <p class="h5 mb-0 py-1"> <img class="ui avatar image" src="{{'http://localhost:7860/public/profile image/'+post.authorimage}}" ><span>{{post.author}}</span></p>
           </div>
-  
           <div class="messages-box">
             <div class="list-group rounded-0">
  
@@ -46,11 +39,11 @@
           </form>
         </div>
       </div>
-      <!-- Chat Box-->
+      
       <div class="col-7 px-0">
+        <i class="far fa-flag fa-3x" id="report" (click)="report(post._id)"  rel="tooltip" title="report"></i>
         <img class="post" src="{{'http://localhost:7860/public/posts/'+post.postUrl}}">
   
       </div>
     </div>
   </div>
-</div>

@@ -34,7 +34,6 @@ export class ChatSystemComponent implements OnInit {
              
             this.chatservice.onlineUsers().subscribe(
               onlineUser => {
-                console.log(onlineUser)
                 this.onlineUsers = onlineUser
               }
             )
@@ -59,7 +58,6 @@ export class ChatSystemComponent implements OnInit {
     this.chatservice.getMessage().subscribe(
       msg =>{
         this.sendMsgList.push(msg)
-        console.log(msg)
       },
     )
 
@@ -70,25 +68,15 @@ export class ChatSystemComponent implements OnInit {
   selectedUser :string 
   property = false
   userSelected(user){
-
- 
-     
     this.toUser = user.username
     this.selectedUser = user
     this.property = true
-    console.log(this.selectedUser)
-  
-
 // bring old chats
-console.log("userdata"+ this.userdata.username)
-console.log("to user"+ this.toUser)
-
 this.user.oldChats(this.userdata.username,this.toUser).subscribe(
   data => { 
             this.sendMsgList = (data)
-            console.log(this.sendMsgList)
   },
-  error => {console.log(error)}
+  error => {window.alert("something went Wrong")}
 )
 
     this.chatservice.join(user.username)
@@ -105,11 +93,5 @@ this.user.oldChats(this.userdata.username,this.toUser).subscribe(
     
     this.sendMsgList.push({ 'message' : this.message, 'sendername': this.userdata.username, receivername : this.toUser, time : time})
     this.message = " "
-    console.log(this.message)
-    console.log(this.sendMsgList)
-   
   }}
-
- 
-
 }

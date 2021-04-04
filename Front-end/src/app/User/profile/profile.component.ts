@@ -89,13 +89,12 @@ export class ProfileComponent implements OnInit {
             this.user.getUser(this.currentuser)
             .subscribe(
               (data :Profile) => {
-                        this.usersdata = data,
-                        console.log(data)
+                        this.usersdata = data
                       },
               error => {this.route.navigate(['login'])}
             )
           },
-          error=>{console.log(error)}
+          error=>{window.alert("something went Wrong")}
         )
       }
       else{
@@ -135,4 +134,12 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  deletePost(id){
+    
+    this.user.delete(id).subscribe(
+      data =>{
+        window.alert("deleted")
+      }
+    )
+  }
 }
